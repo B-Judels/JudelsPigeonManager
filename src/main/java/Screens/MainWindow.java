@@ -15,7 +15,7 @@ public class MainWindow {
         frame.setLocationRelativeTo(null);
         frame.setTitle("JudelsPIgeonManager");
 
-
+//this is a panel
         panel = new JPanel();
         frame.add(panel);
 
