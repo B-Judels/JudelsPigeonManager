@@ -1,5 +1,7 @@
 package Screens;
 
+import org.example.Pigeons;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,8 +31,13 @@ public class MainWindow {
         panel.setLayout(null);
         frame.add(panel);
         col = new String[]{"Pigeon ID", "Pigeon colour"};
-        data = new String[][]{{"1234", "BB"}, {"1111", "CH"}, {"5555", "BBWF"}};
-        int totalData = data.length;
+        data = new String[][]{{"3333", "BB"}, {"1234", "CH"}, {"2533", "BB"}};
+        Pigeons.data.add(new Pigeons("1234", "BB"));
+        Pigeons.data.add(new Pigeons("1224", "CH"));
+        Pigeons.data.add(new Pigeons("2533", "BB"));
+        int totalData = Pigeons.data.size();
+        System.out.println(Arrays.stream(Pigeons.data.toArray()).count());
+        System.out.println(Arrays.stream(data).count());
 
 
 

@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public class Pigeons {
     private String pigeonID;
     private String pigeonColour;
@@ -16,4 +18,10 @@ public class Pigeons {
     public void setPigeonID(String pigeonID) {
         this.pigeonID = pigeonID;
     }
+
+    public String getPigeonColour() {
+        return pigeonColour;
+    }
+
+    public static ArrayList<Pigeons> data = new ArrayList<>();
 }
