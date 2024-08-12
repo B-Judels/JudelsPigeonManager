@@ -1,6 +1,5 @@
 package org.example;
 
-
 import Screens.MainWindow;
 
 import javax.swing.*;
