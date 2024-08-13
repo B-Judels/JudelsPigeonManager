@@ -3,12 +3,16 @@ package Screens;
 import org.example.Pigeons;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainWindow {
 
+    TableModel DefaultTableModel;
     JFrame frame;
     JPanel panel;
     JTable table;
@@ -17,6 +21,7 @@ public class MainWindow {
     String[][] data;
     JButton button;
     JTextField textField;
+    JTextField textField2;
     JLabel label;
 
     public MainWindow() {
@@ -39,14 +44,31 @@ public class MainWindow {
         System.out.println(Arrays.stream(Pigeons.data.toArray()).count());
         System.out.println(Arrays.stream(data).count());
 
+//        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+//        ArrayList<Pigeons> list = Pigeons.data;
+
+//        for (int i = 0; i < list.size(); i++) {
+//            Object rowData = new Object[][]{{list.get(i).getPigeonID(), list.get(i).getPigeonColour()}};
+//            tableModel.addRow(Object[] rowData);
+//        }
 
 
-        table = new JTable(data, col);
+        table = new JTable(DefaultTableModel);
         table.setBounds(30, 100, 200, 300);
+        table.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {"1234", "BB"}
+                },
+                new String [] {
+                        "ID", "Colour"
+                }
+        ));
         panel.add(table);
 
-        scrollPane = new JScrollPane(table);
+
+        scrollPane = new JScrollPane();
         scrollPane.setBounds(30, 100, 200, 300);
+        scrollPane.setViewportView(table);
         panel.add(scrollPane);
 
         label = new JLabel("Pigeon ID");
@@ -60,12 +82,11 @@ public class MainWindow {
 
         label = new JLabel("Pigeon colour");
         label.setBounds(300, 120, 100, 20);
-        String newColour = textField.getText();
         panel.add(label);
 
-        textField = new JTextField(10);
-        textField.setBounds(390, 120, 200, 20);
-        panel.add(textField);
+        textField2 = new JTextField(10);
+        textField2.setBounds(390, 120, 200, 20);
+        panel.add(textField2);
 
         button = new JButton("Add");
         button.setBounds(300, 140, 100, 20);
@@ -74,11 +95,14 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    data[totalData][0] = newID;
-                    data[totalData][1] = newColour;
-                    System.out.println(data[totalData]);
+                    DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+                    tableModel.addRow(new Object[]{textField.getText(), textField2.getText()});
+                    System.out.println(tableModel);
+
+
                 }catch(Exception x) {
                     x.printStackTrace();
+                    System.out.println("NAH");
                 }
             }
         });
