@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -73,108 +75,190 @@ public class AddPigeonWindow {
         button.setBounds(90, 0, 80, 30);
         panel.add(button);
 
-        label = new JLabel("Pigeon ID");
-        label.setBounds(450, 100, 100, 20);
-        panel.add(label);
 
-        textField = new JTextField(10);
-        textField.setBounds(590, 100, 200, 20);
+//Pigeon ID Input
+        textField = new JTextField("Pigeon ID");
+        textField.setBounds(20, 100, 100, 20);
+        textField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField.getText().equals("Pigeon ID"))
+                    textField.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().equals(""))
+                    textField.setText("Pigeon ID");
+            }
+        });
         panel.add(textField);
-
-        label = new JLabel("Pigeon Calling Card");
-        label.setBounds(450, 120, 150, 20);
-        panel.add(label);
-
-        textField2 = new JTextField(10);
-        textField2.setBounds(590, 120, 200, 20);
+//--------
+//Calling Card Input
+        textField2 = new JTextField("Calling Card");
+        textField2.setBounds(140, 100, 100, 20);
+        textField2.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField2.getText().equals("Calling Card"))
+                    textField2.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField2.getText().equals(""))
+                    textField2.setText("Calling Card");
+            }
+        });
         panel.add(textField2);
-
-        label = new JLabel("Pigeon Year");
-        label.setBounds(450, 140, 100, 20);
-        panel.add(label);
-
-        textField3 = new JTextField(10);
-        textField3.setBounds(590, 140, 200, 20);
+//----------
+//Year Input
+        textField3 = new JTextField("Year");
+        textField3.setBounds(260, 100, 100, 20);
+        textField3.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField3.getText().equals("Year"))
+                    textField3.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField3.getText().equals(""))
+                    textField3.setText("Year");
+            }
+        });
         panel.add(textField3);
-
-        label = new JLabel("Pigeon Score");
-        label.setBounds(450, 160, 100, 20);
-        panel.add(label);
-
-        textField4 = new JTextField(10);
-        textField4.setBounds(590, 160, 200, 20);
-        textField4.setText("00");
+//----------
+//Score Input
+        textField4 = new JTextField("Score");
+        textField4.setBounds(20, 150, 100, 20);
+        textField4.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField4.getText().equals("Score"))
+                    textField4.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField4.getText().equals(""))
+                    textField4.setText("Score");
+            }
+        });
         panel.add(textField4);
-
-        label = new JLabel("Pigeon Score Percentage");
-        label.setBounds(440, 180, 160, 20);
-        panel.add(label);
-
-        textField5 = new JTextField(10);
-        textField5.setBounds(590, 180, 200, 20);
-        textField5.setText("00");
+//----------
+//Score Percentage
+        textField5 = new JTextField("Score Percentage");
+        textField5.setBounds(140, 150, 100, 20);
+        textField5.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField5.getText().equals("Score Percentage"))
+                    textField5.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField5.getText().equals(""))
+                    textField5.setText("Score Percentage");
+            }
+        });
         panel.add(textField5);
-
-        label = new JLabel("Pigeon wins");
-        label.setBounds(450, 200, 100, 20);
-        panel.add(label);
-
-        textField6 = new JTextField(10);
-        textField6.setBounds(590, 200, 200, 20);
-        textField6.setText("00");
+//---------------
+//Wins Input
+        textField6 = new JTextField("Wins");
+        textField6.setBounds(260, 150, 100, 20);
+        textField6.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField6.getText().equals("Wins"))
+                    textField6.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField6.getText().equals(""))
+                    textField6.setText("Wins");
+            }
+        });
         panel.add(textField6);
-
-        label = new JLabel("Pigeon Father");
-        label.setBounds(450, 220, 100, 20);
-        panel.add(label);
-
-        textField7 = new JTextField(10);
-        textField7.setBounds(590, 220, 200, 20);
+//----------------
+//Father Input
+        textField7 = new JTextField("Father");
+        textField7.setBounds(380, 150, 100, 20);
+        textField7.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField7.getText().equals("Father"))
+                    textField7.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField7.getText().equals(""))
+                    textField7.setText("Father");
+            }
+        });
         panel.add(textField7);
-
-        label = new JLabel("Pigeon Mother");
-        label.setBounds(450, 240, 100, 20);
-        panel.add(label);
-
-        textField8 = new JTextField(10);
-        textField8.setBounds(590, 240, 200, 20);
+//-----------
+//Mother Input
+        textField8 = new JTextField("Mother");
+        textField8.setBounds(500, 150, 100, 20);
+        textField8.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField8.getText().equals("Mother"))
+                    textField8.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField8.getText().equals(""))
+                    textField8.setText("Mother");
+            }
+        });
         panel.add(textField8);
-
-        label = new JLabel("Pigeon Colour");
-        label.setBounds(450, 260, 100, 20);
-        panel.add(label);
-
-        textField9 = new JTextField(10);
-        textField9.setBounds(590, 260, 200, 20);
+//---------
+//Colour Input
+        textField9 = new JTextField("Colour");
+        textField9.setBounds(620, 100, 100, 20);
+        textField9.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField9.getText().equals("Colour"))
+                    textField9.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField9.getText().equals(""))
+                    textField9.setText("Colour");
+            }
+        });
         panel.add(textField9);
-
-        label = new JLabel("Pigeon Gender");
-        label.setBounds(450, 280, 100, 20);
-        panel.add(label);
-
-        textField10 = new JTextField(10);
-        textField10.setBounds(590, 280, 200, 20);
+//------------
+//Gender Input
+        textField10 = new JTextField("Gender");
+        textField10.setBounds(500, 100, 100, 20);
+        textField10.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField10.getText().equals("Gender"))
+                    textField10.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField10.getText().equals(""))
+                    textField10.setText("Gender");
+            }
+        });
         panel.add(textField10);
-
-        label = new JLabel("Pigeon Letters");
-        label.setBounds(450, 300, 100, 20);
-        panel.add(label);
-
-        textField11 = new JTextField(10);
-        textField11.setBounds(590, 300, 200, 20);
+//-----------
+//Letters Input
+        textField11 = new JTextField("Letters");
+        textField11.setBounds(380, 100, 100, 20);
+        textField11.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField11.getText().equals("Letters"))
+                    textField11.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField11.getText().equals(""))
+                    textField11.setText("Letters");
+            }
+        });
         panel.add(textField11);
-
-        label = new JLabel("Pigeon Weaned");
-        label.setBounds(450, 320, 100, 20);
-        panel.add(label);
-
-        textField12 = new JTextField(10);
-        textField12.setBounds(590, 320, 200, 20);
+//---------
+//weaned Input
+        textField12 = new JTextField("Date Weaned");
+        textField12.setBounds(620, 150, 100, 20);
+        textField12.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField12.getText().equals("Date Weaned"))
+                    textField12.setText("");
+            }
+            public void focusLost(FocusEvent e) {
+                if (textField12.getText().equals(""))
+                    textField12.setText("Date Weaned");
+            }
+        });
         panel.add(textField12);
-
+//----------
 
         button = new JButton("Add");
-        button.setBounds(450, 350, 100, 20);
+        button.setBounds(320, 200, 100, 20);
         panel.add(button);
 
         button.addActionListener(new ActionListener() {

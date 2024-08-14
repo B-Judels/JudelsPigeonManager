@@ -95,8 +95,8 @@ public class MainWindow {
         }
 
         scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(30, 100, 200, 300);
-        scrollPane.setSize(400,500);
+        scrollPane.setBounds(40, 50, 200, 300);
+        scrollPane.setSize(700,500);
         panel.add(scrollPane);
 //
 //        label = new JLabel("Pigeon ID");
