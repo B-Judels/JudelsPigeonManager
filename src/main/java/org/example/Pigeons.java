@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Pigeons {
     private String pigeonID;
     private String PigeonCallingCard;
-    private LocalDate pigeonYear;
+    private String pigeonYear;
     private int pigeonScore;
     private double pigeonScorePercentage;
     private int pigeonWins;
@@ -15,12 +15,12 @@ public class Pigeons {
     private String pigeonColour;
     private String pigeonGender;
     private String pigeonLetters;
-    private LocalDate pigeonWeaned;
+    private String pigeonWeaned;
 
-    public Pigeons(String pigeonID, String pigeonCallingCard, LocalDate pigeonYear,
+    public Pigeons(String pigeonID, String pigeonCallingCard, String pigeonYear,
                    int pigeonScore, double pigeonScorePercentage, int pigeonWins,
                    String pigeonFather, String pigeonMother, String pigeonLetters,
-                   String pigeonColour, String pigeonGender,LocalDate pigeonWeaned) {
+                   String pigeonColour, String pigeonGender,String pigeonWeaned) {
 
         this.pigeonID = pigeonID;
         this.PigeonCallingCard = pigeonCallingCard;
@@ -55,11 +55,11 @@ public class Pigeons {
     }
 //---
 //Year methods
-    public LocalDate getPigeonYear() {
+    public String getPigeonYear() {
         return pigeonYear;
     }
 
-    public void setPigeonYear(LocalDate pigeonYear) {
+    public void setPigeonYear(String pigeonYear) {
         this.pigeonYear = pigeonYear;
     }
 //---
@@ -127,11 +127,11 @@ public class Pigeons {
     }
 //---
 //Weaned methods
-    public LocalDate getPigeonWeaned() {
+    public String getPigeonWeaned() {
         return pigeonWeaned;
     }
 
-    public void setPigeonWeaned(LocalDate pigeonWeaned) {
+    public void setPigeonWeaned(String pigeonWeaned) {
         this.pigeonWeaned = pigeonWeaned;
     }
 //---
