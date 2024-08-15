@@ -61,7 +61,7 @@ public class AddPigeonWindow {
         button = new JButton("Team");
         button.setBackground(Color.CYAN);
         button.setEnabled(true);
-        button.setBounds(0, 0, 80, 30);
+        button.setBounds(0, 0, 80, 20);
         panel.add(button);
         button.addActionListener(new ActionListener() {
             @Override
@@ -72,10 +72,10 @@ public class AddPigeonWindow {
             }
         });
 
-        button = new JButton("Add");
+        button = new JButton("Add Pigeon");
         button.setBackground(Color.CYAN);
         button.setEnabled(false);
-        button.setBounds(90, 0, 80, 30);
+        button.setBounds(90, 0, 120, 20);
         panel.add(button);
 
 
@@ -259,11 +259,12 @@ public class AddPigeonWindow {
         });
         panel.add(textField12);
 //----------
-
+//Button so add all input text to Data List
         button = new JButton("Add");
         button.setBounds(320, 200, 100, 20);
         panel.add(button);
-
+//----------
+        //Action Listener For Add Button
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -285,36 +286,36 @@ public class AddPigeonWindow {
                     String gender = textField10.getText();
                     String letters = textField11.getText();
                     String weaned = textField12.getText();
-
+                    //---------
                     // Add to the pigeons data list
                     Pigeons pigeon = new Pigeons(id, callingCard, year, score, scoreOdss, wins, father, mother, colour, gender, letters, weaned, flyed);
                     pigeonsData.add(pigeon);
-
+                    //----------
                     // Save updated data to JSON file
                     saveJsonToFile();
-
-                    // Clear input fields
-                    textField.setText("");
-                    textField2.setText("");
-                    textField3.setText("");
-                    textField4.setText("");
-                    textField5.setText("");
-                    textField6.setText("");
-                    textField7.setText("");
-                    textField8.setText("");
-                    textField9.setText("");
-                    textField10.setText("");
-                    textField11.setText("");
-                    textField12.setText("");
-
+                    //------------
+                    // Set Input Fields Back To Default
+                    textField.setText("Pigeon ID");
+                    textField2.setText("Calling Card");
+                    textField3.setText("Year");
+                    textField4.setText("Times Scored");
+                    textField5.setText("Times Flyed");
+                    textField6.setText("Wins");
+                    textField7.setText("Father");
+                    textField8.setText("Mother");
+                    textField9.setText("Colour");
+                    textField10.setText("Gender");
+                    textField11.setText("Letters");
+                    textField12.setText("Date Weaned");
+                    //----
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
     }
-    private static final DecimalFormat decFor = new DecimalFormat("0.00");
 
+//Save New Pigeons To json file
     private void saveJsonToFile() {
         try {
             // Read existing data
@@ -340,8 +341,10 @@ public class AddPigeonWindow {
             e.printStackTrace();
         }
     }
-
+//-----------
+//Set AddPigeonWindow visible
     public void show() {
         frame.setVisible(true);
     }
 }
+//---------
