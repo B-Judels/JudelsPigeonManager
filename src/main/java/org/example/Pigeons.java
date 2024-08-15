@@ -7,7 +7,7 @@ public class Pigeons {
     private String pigeonID;
     private String PigeonCallingCard;
     private String pigeonYear;
-    private int pigeonScore;
+    private int pigeonScored;
     private double pigeonScorePercentage;
     private int pigeonWins;
     private String pigeonFather;
@@ -16,16 +16,18 @@ public class Pigeons {
     private String pigeonGender;
     private String pigeonLetters;
     private String pigeonWeaned;
+    private int pigeonFlyed;
 
     public Pigeons(String pigeonID, String pigeonCallingCard, String pigeonYear,
-                   int pigeonScore, double pigeonScorePercentage, int pigeonWins,
+                   int pigeonScored, double pigeonScorePercentage, int pigeonWins,
                    String pigeonFather, String pigeonMother, String pigeonLetters,
-                   String pigeonColour, String pigeonGender,String pigeonWeaned) {
+                   String pigeonColour, String pigeonGender,String pigeonWeaned,
+                   int PigeonFlyed) {
 
         this.pigeonID = pigeonID;
         this.PigeonCallingCard = pigeonCallingCard;
         this.pigeonYear = pigeonYear;
-        this.pigeonScore = pigeonScore;
+        this.pigeonScored = pigeonScored;
         this.pigeonScorePercentage = pigeonScorePercentage;
         this.pigeonWins = pigeonWins;
         this.pigeonFather = pigeonFather;
@@ -62,13 +64,13 @@ public class Pigeons {
         this.pigeonYear = pigeonYear;
     }
 //---
-//Score methods
-    public int getPigeonScore() {
-        return pigeonScore;
+//Scored methods
+    public int getPigeonScored() {
+        return pigeonScored;
     }
 
-    public void setPigeonScore(int pigeonScore) {
-        this.pigeonScore = pigeonScore;
+    public void setPigeonScored(int pigeonScore) {
+        this.pigeonScored = pigeonScore;
     }
 //---
 //Score percentage methods

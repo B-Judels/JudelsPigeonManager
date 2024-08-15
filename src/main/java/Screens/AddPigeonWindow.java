@@ -10,10 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+
 
 public class AddPigeonWindow {
 
@@ -122,31 +125,31 @@ public class AddPigeonWindow {
         panel.add(textField3);
 //----------
 //Score Input
-        textField4 = new JTextField("Score");
-        textField4.setBounds(20, 150, 100, 20);
+        textField4 = new JTextField("Times Scored");
+        textField4.setBounds(140, 150, 100, 20);
         textField4.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                if (textField4.getText().equals("Score"))
+                if (textField4.getText().equals("Times Scored"))
                     textField4.setText("");
             }
             public void focusLost(FocusEvent e) {
                 if (textField4.getText().equals(""))
-                    textField4.setText("Score");
+                    textField4.setText("Times Scored");
             }
         });
         panel.add(textField4);
 //----------
 //Score Percentage
-        textField5 = new JTextField("Score Percentage");
-        textField5.setBounds(140, 150, 100, 20);
+        textField5 = new JTextField("Times Flyed");
+        textField5.setBounds(20, 150, 100, 20);
         textField5.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                if (textField5.getText().equals("Score Percentage"))
+                if (textField5.getText().equals("Times Flyed"))
                     textField5.setText("");
             }
             public void focusLost(FocusEvent e) {
                 if (textField5.getText().equals(""))
-                    textField5.setText("Score Percentage");
+                    textField5.setText("Times Flyed");
             }
         });
         panel.add(textField5);
@@ -270,7 +273,11 @@ public class AddPigeonWindow {
                     String callingCard = textField2.getText();
                     String year = textField3.getText();
                     int score = Integer.parseInt(textField4.getText());
-                    double scorePercentage = Double.parseDouble(textField5.getText());
+                    int flyed = Integer.parseInt(textField5.getText());
+                    double scoreOdss =(Double.parseDouble(String.valueOf(score)) / Double.parseDouble(String.valueOf(flyed))) * 100;
+                    System.out.println("score " + score);
+                    System.out.println("flyed " + flyed);
+                    System.out.println("scorePercentage " + scoreOdss);
                     int wins = Integer.parseInt(textField6.getText());
                     String father = textField7.getText();
                     String mother = textField8.getText();
@@ -280,7 +287,7 @@ public class AddPigeonWindow {
                     String weaned = textField12.getText();
 
                     // Add to the pigeons data list
-                    Pigeons pigeon = new Pigeons(id, callingCard, year, score, scorePercentage, wins, father, mother, colour, gender, letters, weaned);
+                    Pigeons pigeon = new Pigeons(id, callingCard, year, score, scoreOdss, wins, father, mother, colour, gender, letters, weaned, flyed);
                     pigeonsData.add(pigeon);
 
                     // Save updated data to JSON file
@@ -306,10 +313,29 @@ public class AddPigeonWindow {
             }
         });
     }
+    private static final DecimalFormat decFor = new DecimalFormat("0.00");
 
     private void saveJsonToFile() {
-        try (FileWriter writer = new FileWriter("src/pigeons.json")) {
-            gson.toJson(pigeonsData, writer);
+        try {
+            // Read existing data
+            List<Pigeons> existingData = new ArrayList<>();
+            Type pigeonListType = new TypeToken<List<Pigeons>>() {}.getType();
+            try (Reader reader = new FileReader("src/pigeons.json")) {
+                existingData = gson.fromJson(reader, pigeonListType);
+                if (existingData == null) {
+                    existingData = new ArrayList<>();
+                }
+            } catch (FileNotFoundException e) {
+                // File not found, initialize with empty list
+            }
+
+            // Add new data
+            existingData.addAll(pigeonsData);
+
+            // Write updated data
+            try (FileWriter writer = new FileWriter("src/pigeons.json")) {
+                gson.toJson(existingData, writer);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
