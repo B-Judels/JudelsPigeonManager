@@ -27,17 +27,6 @@ public class MainWindow {
     private JTable table;
     private JScrollPane scrollPane;
     private JButton button;
-    private JTextField textField;
-    private JTextField textField2;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JTextField textField7;
-    private JTextField textField8;
-    private JTextField textField9;
-    private JTextField textField10;
-    private JTextField textField11;
-    private JTextField textField12;
     private JLabel label;
     private Gson gson;
     private List<Pigeons> pigeonsData;
@@ -98,6 +87,21 @@ public class MainWindow {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        button = new JButton("Hatchery");
+        button.setBackground(Color.CYAN);
+        button.setEnabled(true);
+        button.setBounds(350, 0, 120, 20);
+        panel.add(button);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                HatcheryWindow hatch = new HatcheryWindow();
+                hatch.show();
+            }
+        });
+
 
 
 
