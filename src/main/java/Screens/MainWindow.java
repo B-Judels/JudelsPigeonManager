@@ -81,6 +81,25 @@ public class MainWindow {
                 add.show();
             }
         });
+        try {
+            button = new JButton("Add Breeder");
+            button.setBackground(Color.CYAN);
+            button.setEnabled(true);
+            button.setBounds(220, 0, 120, 20);
+            panel.add(button);
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    frame.setVisible(false);
+                    AddBreedersWindow addB = new AddBreedersWindow();
+                    addB.show();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 
         tableModel = new DefaultTableModel(new String[]{"ID", "Calling Card", "Year", "Score", "Score Odds", "Wins"}, 0);
         table = new JTable(tableModel);

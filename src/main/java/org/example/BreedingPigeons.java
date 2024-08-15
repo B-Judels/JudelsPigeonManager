@@ -11,14 +11,14 @@ public class BreedingPigeons {
         private String bPigeonLetters;
 
         public BreedingPigeons(String bPigeonID, String bPigeonName, String bPigeonYear,
-                       String bPigeonLetters, String bPigeonColour, String bPigeonGender) {
+                       String bPigeonLetters, String bPigeonGender, String bPigeonColour) {
 
             this.bPigeonID = bPigeonID;
             this.bPigeonName = bPigeonName;
             this.bPigeonYear = bPigeonYear;
-            this.bPigeonColour = bPigeonColour;
-            this.bPigeonGender = bPigeonGender;
             this.bPigeonLetters = bPigeonLetters;
+            this.bPigeonGender = bPigeonGender;
+            this.bPigeonColour = bPigeonColour;
         }
         //ID methods
         public String getBPigeonID() {
