@@ -100,7 +100,7 @@ public class HatcheryWindow {
 
 
 
-        tableModel = new DefaultTableModel(new String[]{"ID", "Name", "Year", "Letters", "Colour"}, 0);
+        tableModel = new DefaultTableModel(new String[]{"ID", "Name", "Year", "Letters", "Colour", }, 0);
         table = new JTable(tableModel);
         table.setBounds(30, 100, 500, 200);
 

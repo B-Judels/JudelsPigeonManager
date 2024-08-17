@@ -39,6 +39,27 @@ public class AddBreedersWindow {
     private Gson gson;
     private List<BreedingPigeons> breedPigeonsData;
     private List<BreedingPigeons> breedPigeonsData2;
+    private JMenuBar menuBar;
+    private JMenu menu;
+    private JMenuBar menuBar2;
+    private JMenu menu2;
+    private JMenuBar menuBar3;
+    private JMenu menu3;
+    private JMenuBar menuBar4;
+    private JMenu menu4;
+    private JMenuItem gene1;
+    private JMenuItem gene2;
+    private JMenuItem gene3;
+    private JMenuItem gene4;
+    private JMenuItem gene5;
+    private JMenuItem gene6;
+    private JMenuItem gene7;
+    private JMenuItem gene8;
+    private JMenuItem gene9;
+    private JMenuItem gene10;
+    private JMenuItem gene11;
+    private JMenuItem gene12;
+    private JMenuItem gene13;
 
 
     public AddBreedersWindow() {
@@ -172,6 +193,30 @@ public class AddBreedersWindow {
         });
         panel.add(textField6);
 //---------
+
+        menuBar = new JMenuBar();
+        menu().setText("Code 1");
+        menuBar.add(menu());
+        menuBar.setBounds(20,130,60,20);
+        panel.add(menuBar);
+
+        menuBar2 = new JMenuBar();
+        menu2().setText("Code 2");
+        menuBar2.add(menu2());
+        menuBar2.setBounds(90,130,60,20);
+        panel.add(menuBar2);
+
+        menuBar3 = new JMenuBar();
+        menu3().setText("Code 3");
+        menuBar3.add(menu3());
+        menuBar3.setBounds(160,130,60,20);
+        panel.add(menuBar3);
+
+        menuBar4 = new JMenuBar();
+        menu4().setText("Code 4");
+        menuBar4.add(menu4());
+        menuBar4.setBounds(230,130,60,20);
+        panel.add(menuBar4);
 
 //Button so add all input text to Data List
         button = new JButton("Add");
@@ -339,6 +384,518 @@ public class AddBreedersWindow {
         });
 
     }
+
+private JMenu menu(){
+        menu = new JMenu();
+    gene1 = new JMenuItem();
+    gene1.setBackground(Color.BLUE);
+    gene1.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.BLUE);
+        }
+    });
+
+    gene2 = new JMenuItem();
+    gene2.setBackground(Color.GREEN);
+    gene2.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.GREEN);
+        }
+    });
+
+    gene3 = new JMenuItem();
+    gene3.setBackground(Color.PINK);
+    gene3.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.PINK);
+        }
+    });
+
+    gene4 = new JMenuItem();
+    gene4.setBackground(Color.RED);
+    gene4.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.RED);
+        }
+    });
+
+    gene5 = new JMenuItem();
+    gene5.setBackground(Color.YELLOW);
+    gene5.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.YELLOW);
+        }
+    });
+
+    gene6 = new JMenuItem();
+    gene6.setBackground(Color.BLACK);
+    gene6.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.BLACK);
+        }
+    });
+
+    gene7 = new JMenuItem();
+    gene7.setBackground(Color.DARK_GRAY);
+    gene7.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.DARK_GRAY);
+        }
+    });
+
+    gene8 = new JMenuItem();
+    gene8.setBackground(Color.GRAY);
+    gene8.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.GRAY);
+        }
+    });
+
+    gene9 = new JMenuItem();
+    gene9.setBackground(Color.WHITE);
+    gene9.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.WHITE);
+        }
+    });
+
+    gene10 = new JMenuItem();
+    gene10.setBackground(Color.CYAN);
+    gene10.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.CYAN);
+        }
+    });
+
+    gene11 = new JMenuItem();
+    gene11.setBackground(Color.MAGENTA);
+    gene11.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.MAGENTA);
+        }
+    });
+
+    gene12 = new JMenuItem();
+    gene12.setBackground(Color.LIGHT_GRAY);
+    gene12.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.LIGHT_GRAY);
+        }
+    });
+
+    gene13 = new JMenuItem();
+    gene13.setBackground(Color.ORANGE);
+    gene13.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menuBar.setBackground(Color.ORANGE);
+        }
+    });
+
+    menu.add(gene1); menu.add(gene2); menu.add(gene3); menu.add(gene4); menu.add(gene5); menu.add(gene6); menu.add(gene7);
+    menu.add(gene8); menu.add(gene9); menu.add(gene10); menu.add(gene11); menu.add(gene12); menu.add(gene13);
+    menuBar.add(menu);
+    panel.add(menuBar);
+
+    return menu;
+}
+
+private JMenu menu2()
+    {
+        menu2 = new JMenu();
+        gene1 = new JMenuItem();
+        gene1.setBackground(Color.BLUE);
+        gene1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.BLUE);
+            }
+        });
+
+        gene2 = new JMenuItem();
+        gene2.setBackground(Color.GREEN);
+        gene2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.GREEN);
+            }
+        });
+
+        gene3 = new JMenuItem();
+        gene3.setBackground(Color.PINK);
+        gene3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.PINK);
+            }
+        });
+
+        gene4 = new JMenuItem();
+        gene4.setBackground(Color.RED);
+        gene4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.RED);
+            }
+        });
+
+        gene5 = new JMenuItem();
+        gene5.setBackground(Color.YELLOW);
+        gene5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.YELLOW);
+            }
+        });
+
+        gene6 = new JMenuItem();
+        gene6.setBackground(Color.BLACK);
+        gene6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.BLACK);
+            }
+        });
+
+        gene7 = new JMenuItem();
+        gene7.setBackground(Color.DARK_GRAY);
+        gene7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.DARK_GRAY);
+            }
+        });
+
+        gene8 = new JMenuItem();
+        gene8.setBackground(Color.GRAY);
+        gene8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.GRAY);
+            }
+        });
+
+        gene9 = new JMenuItem();
+        gene9.setBackground(Color.WHITE);
+        gene9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.WHITE);
+            }
+        });
+
+        gene10 = new JMenuItem();
+        gene10.setBackground(Color.CYAN);
+        gene10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.CYAN);
+            }
+        });
+
+        gene11 = new JMenuItem();
+        gene11.setBackground(Color.MAGENTA);
+        gene11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.MAGENTA);
+            }
+        });
+
+        gene12 = new JMenuItem();
+        gene12.setBackground(Color.LIGHT_GRAY);
+        gene12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.LIGHT_GRAY);
+            }
+        });
+
+        gene13 = new JMenuItem();
+        gene13.setBackground(Color.ORANGE);
+        gene13.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar2.setBackground(Color.ORANGE);
+            }
+        });
+
+        menu2.add(gene1); menu2.add(gene2); menu2.add(gene3); menu2.add(gene4); menu2.add(gene5); menu2.add(gene6); menu2.add(gene7);
+        menu2.add(gene8); menu2.add(gene9); menu2.add(gene10); menu2.add(gene11); menu2.add(gene12); menu2.add(gene13);
+        menuBar2.add(menu2);
+        panel.add(menuBar2);
+
+        return menu2;
+    }
+
+
+    private JMenu menu3(){
+        menu3 = new JMenu();
+        gene1 = new JMenuItem();
+        gene1.setBackground(Color.BLUE);
+        gene1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.BLUE);
+            }
+        });
+
+        gene2 = new JMenuItem();
+        gene2.setBackground(Color.GREEN);
+        gene2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.GREEN);
+            }
+        });
+
+        gene3 = new JMenuItem();
+        gene3.setBackground(Color.PINK);
+        gene3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.PINK);
+            }
+        });
+
+        gene4 = new JMenuItem();
+        gene4.setBackground(Color.RED);
+        gene4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.RED);
+            }
+        });
+
+        gene5 = new JMenuItem();
+        gene5.setBackground(Color.YELLOW);
+        gene5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.YELLOW);
+            }
+        });
+
+        gene6 = new JMenuItem();
+        gene6.setBackground(Color.BLACK);
+        gene6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.BLACK);
+            }
+        });
+
+        gene7 = new JMenuItem();
+        gene7.setBackground(Color.DARK_GRAY);
+        gene7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.DARK_GRAY);
+            }
+        });
+
+        gene8 = new JMenuItem();
+        gene8.setBackground(Color.GRAY);
+        gene8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.GRAY);
+            }
+        });
+
+        gene9 = new JMenuItem();
+        gene9.setBackground(Color.WHITE);
+        gene9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.WHITE);
+            }
+        });
+
+        gene10 = new JMenuItem();
+        gene10.setBackground(Color.CYAN);
+        gene10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.CYAN);
+            }
+        });
+
+        gene11 = new JMenuItem();
+        gene11.setBackground(Color.MAGENTA);
+        gene11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.MAGENTA);
+            }
+        });
+
+        gene12 = new JMenuItem();
+        gene12.setBackground(Color.LIGHT_GRAY);
+        gene12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.LIGHT_GRAY);
+            }
+        });
+
+        gene13 = new JMenuItem();
+        gene13.setBackground(Color.ORANGE);
+        gene13.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar3.setBackground(Color.ORANGE);
+            }
+        });
+
+        menu3.add(gene1); menu3.add(gene2); menu3.add(gene3); menu3.add(gene4); menu3.add(gene5); menu3.add(gene6); menu3.add(gene7);
+        menu3.add(gene8); menu3.add(gene9); menu3.add(gene10); menu3.add(gene11); menu3.add(gene12); menu3.add(gene13);
+        menuBar3.add(menu3);
+        panel.add(menuBar3);
+
+        return menu3;
+    }
+
+
+    private JMenu menu4(){
+        menu4 = new JMenu();
+        gene1 = new JMenuItem();
+        gene1.setBackground(Color.BLUE);
+        gene1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.BLUE);
+            }
+        });
+
+        gene2 = new JMenuItem();
+        gene2.setBackground(Color.GREEN);
+        gene2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.GREEN);
+            }
+        });
+
+        gene3 = new JMenuItem();
+        gene3.setBackground(Color.PINK);
+        gene3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.PINK);
+            }
+        });
+
+        gene4 = new JMenuItem();
+        gene4.setBackground(Color.RED);
+        gene4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.RED);
+            }
+        });
+
+        gene5 = new JMenuItem();
+        gene5.setBackground(Color.YELLOW);
+        gene5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.YELLOW);
+            }
+        });
+
+        gene6 = new JMenuItem();
+        gene6.setBackground(Color.BLACK);
+        gene6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.BLACK);
+            }
+        });
+
+        gene7 = new JMenuItem();
+        gene7.setBackground(Color.DARK_GRAY);
+        gene7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.DARK_GRAY);
+            }
+        });
+
+        gene8 = new JMenuItem();
+        gene8.setBackground(Color.GRAY);
+        gene8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.GRAY);
+            }
+        });
+
+        gene9 = new JMenuItem();
+        gene9.setBackground(Color.WHITE);
+        gene9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.WHITE);
+            }
+        });
+
+        gene10 = new JMenuItem();
+        gene10.setBackground(Color.CYAN);
+        gene10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.CYAN);
+            }
+        });
+
+        gene11 = new JMenuItem();
+        gene11.setBackground(Color.MAGENTA);
+        gene11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.MAGENTA);
+            }
+        });
+
+        gene12 = new JMenuItem();
+        gene12.setBackground(Color.LIGHT_GRAY);
+        gene12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.LIGHT_GRAY);
+            }
+        });
+
+        gene13 = new JMenuItem();
+        gene13.setBackground(Color.ORANGE);
+        gene13.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar4.setBackground(Color.ORANGE);
+            }
+        });
+
+        menu4.add(gene1); menu4.add(gene2); menu4.add(gene3); menu4.add(gene4); menu4.add(gene5); menu4.add(gene6); menu4.add(gene7);
+        menu4.add(gene8); menu4.add(gene9); menu4.add(gene10); menu4.add(gene11); menu4.add(gene12); menu4.add(gene13);
+        menuBar4.add(menu4);
+        panel.add(menuBar4);
+
+        return menu4;
+    }
+
 //Save New Pigeon To father json file
 private void saveJsonToFileFather() {
     try {
