@@ -17,7 +17,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddBreedersWindow {
+public class AddBreeders2Window {
 
     private DefaultTableModel tableModel;
     private JFrame frame;
@@ -37,7 +37,6 @@ public class AddBreedersWindow {
     private JButton button;
     private JButton button1;
     private Gson gson;
-    private List<BreedingPigeons> breedPigeonsData;
     private List<BreedingPigeons> breedPigeonsData2;
     private JMenuBar menuBar;
     private JMenu menu;
@@ -62,9 +61,8 @@ public class AddBreedersWindow {
     private JMenuItem gene13;
 
 
-    public AddBreedersWindow() {
+    public AddBreeders2Window() {
         gson = new Gson();
-        breedPigeonsData = new ArrayList<>();
         breedPigeonsData2 = new ArrayList<>();
 
 
@@ -108,23 +106,23 @@ public class AddBreedersWindow {
 
         button = new JButton("Add Breeder");
         button.setBackground(Color.CYAN);
-        button.setEnabled(false);
-        button.setBounds(220, 0, 120, 20);
-        panel.add(button);
-
-        button = new JButton("Add Mother");
-        button.setBackground(Color.CYAN);
         button.setEnabled(true);
-        button.setBounds(370, 0, 120, 20);
+        button.setBounds(220, 0, 120, 20);
         panel.add(button);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                AddBreeders2Window addbreed2 = new AddBreeders2Window();
-                addbreed2.show();
+                AddBreedersWindow addbreed = new AddBreedersWindow();
+                addbreed.show();
             }
         });
+
+        button = new JButton("Add Mother");
+        button.setBackground(Color.CYAN);
+        button.setEnabled(false);
+        button.setBounds(370, 0, 120, 20);
+        panel.add(button);
 
 
 //Pigeon ID Input
@@ -255,12 +253,12 @@ public class AddBreedersWindow {
                     String gCode4 = menu4.getText();
                     //---------
                     // Add to the pigeons data list
-                    BreedingPigeons breedPigeon = new BreedingPigeons(id, callingCard, year, letters, gender, colour,gCode1,gCode2,gCode3,gCode4);;
-                    breedPigeonsData.add(breedPigeon);
+                    BreedingPigeons breedPigeon2 = new BreedingPigeons(id, callingCard, year, letters, gender, colour,gCode1,gCode2,gCode3,gCode4);;
+                    breedPigeonsData2.add(breedPigeon2);
                     //----------
                     System.out.println(gender);
                     // Save updated data to JSON file
-                        saveJsonToFileFather();
+                    saveJsonToFileMother();
                     //------------
                     // Set Input Fields Back To Default
                     textField.setText("Pigeon ID");
@@ -276,276 +274,147 @@ public class AddBreedersWindow {
         });
 
 
-//mother input
-        //Pigeon ID Input
-        textField7 = new JTextField("Pigeon ID");
-        textField7.setBounds(20, 300, 100, 20);
-        textField7.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField7.getText().equals("Pigeon ID"))
-                    textField7.setText("");
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (textField7.getText().equals(""))
-                    textField7.setText("Pigeon ID");
-            }
-        });
-        panel.add(textField7);
-//--------
-//Calling Card Input
-        textField8 = new JTextField("Name");
-        textField8.setBounds(140, 300, 100, 20);
-        textField8.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField8.getText().equals("Name"))
-                    textField8.setText("");
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (textField8.getText().equals(""))
-                    textField8.setText("Name");
-            }
-        });
-        panel.add(textField8);
-//----------
-//Year Input
-        textField9 = new JTextField("Year");
-        textField9.setBounds(260, 300, 100, 20);
-        textField9.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField9.getText().equals("Year"))
-                    textField9.setText("");
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (textField9.getText().equals(""))
-                    textField9.setText("Year");
-            }
-        });
-        panel.add(textField9);
-//----------
-//Colour Input
-        textField10 = new JTextField("Colour");
-        textField10.setBounds(620, 300, 100, 20);
-        textField10.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField10.getText().equals("Colour"))
-                    textField10.setText("");
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (textField10.getText().equals(""))
-                    textField10.setText("Colour");
-            }
-        });
-        panel.add(textField10);
-//------------
-
-//-----------
-//Letters Input
-        textField12 = new JTextField("Letters");
-        textField12.setBounds(380, 300, 100, 20);
-        textField12.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField12.getText().equals("Letters"))
-                    textField12.setText("");
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (textField12.getText().equals(""))
-                    textField12.setText("Letters");
-            }
-        });
-        panel.add(textField12);
-//---------
-
-//Button so add all input text to Data List
-        button1 = new JButton("Add");
-        button1.setBounds(320, 400, 100, 20);
-        panel.add(button1);
-//----------
-        //Action Listener For Add Button
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    // Get input from text fields
-                    String id2 = textField7.getText();
-                    String callingCard2 = textField8.getText();
-                    String year2 = textField9.getText();
-                    String colour2 = textField10.getText();
-                    String gender2 = "H";
-                    String letters2 = textField12.getText();
-                    String gCode1 = menu.getText();
-                    String gCode2 = menu2.getText();
-                    String gCode3 = menu3.getText();
-                    String gCode4 = menu4.getText();
-
-
-                    //---------
-                    // Add to the pigeons data list
-                    BreedingPigeons breedPigeon2 = new BreedingPigeons(id2, callingCard2, year2, letters2, gender2, colour2,gCode1,gCode2,gCode3,gCode4);
-                    breedPigeonsData2.add(breedPigeon2);
-                    //----------
-                    System.out.println(gender2);
-                    // Save updated data to JSON file
-                    saveJsonToFileMother();
-                    //------------
-                    // Set Input Fields Back To Default
-                    textField7.setText("Pigeon ID");
-                    textField8.setText("Name");
-                    textField9.setText("Year");
-                    textField10.setText("Colour");
-                    textField12.setText("Letters");
-                    //----
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-
     }
 
-private JMenu menu(){
+    private JMenu menu(){
         menu = new JMenu();
-    gene1 = new JMenuItem();
-    gene1.setBackground(Color.BLUE);
-    gene1.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.BLUE);
-            menu.setText("b");
-        }
-    });
+        gene1 = new JMenuItem();
+        gene1.setBackground(Color.BLUE);
+        gene1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.BLUE);
+                menu.setText("b");
+            }
+        });
 
-    gene2 = new JMenuItem();
-    gene2.setBackground(Color.GREEN);
-    gene2.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.GREEN);
-            menu.setText("g");
-        }
-    });
+        gene2 = new JMenuItem();
+        gene2.setBackground(Color.GREEN);
+        gene2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.GREEN);
+                menu.setText("g");
+            }
+        });
 
-    gene3 = new JMenuItem();
-    gene3.setBackground(Color.PINK);
-    gene3.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.PINK);
-            menu.setText("p");
-        }
-    });
+        gene3 = new JMenuItem();
+        gene3.setBackground(Color.PINK);
+        gene3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.PINK);
+                menu.setText("p");
+            }
+        });
 
-    gene4 = new JMenuItem();
-    gene4.setBackground(Color.RED);
-    gene4.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.RED);
-            menu.setText("r");
-        }
-    });
+        gene4 = new JMenuItem();
+        gene4.setBackground(Color.RED);
+        gene4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.RED);
+                menu.setText("r");
+            }
+        });
 
-    gene5 = new JMenuItem();
-    gene5.setBackground(Color.YELLOW);
-    gene5.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.YELLOW);
-            menu.setText("y");
-        }
-    });
+        gene5 = new JMenuItem();
+        gene5.setBackground(Color.YELLOW);
+        gene5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.YELLOW);
+                menu.setText("y");
+            }
+        });
 
-    gene6 = new JMenuItem();
-    gene6.setBackground(Color.BLACK);
-    gene6.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.BLACK);
-            menu.setText("bl");
-        }
-    });
+        gene6 = new JMenuItem();
+        gene6.setBackground(Color.BLACK);
+        gene6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.BLACK);
+                menu.setText("bl");
+            }
+        });
 
-    gene7 = new JMenuItem();
-    gene7.setBackground(Color.DARK_GRAY);
-    gene7.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.DARK_GRAY);
-            menu.setText("dgr");
-        }
-    });
+        gene7 = new JMenuItem();
+        gene7.setBackground(Color.DARK_GRAY);
+        gene7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.DARK_GRAY);
+                menu.setText("dgr");
+            }
+        });
 
-    gene8 = new JMenuItem();
-    gene8.setBackground(Color.GRAY);
-    gene8.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.GRAY);
-            menu.setText("gr");
-        }
-    });
+        gene8 = new JMenuItem();
+        gene8.setBackground(Color.GRAY);
+        gene8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.GRAY);
+                menu.setText("gr");
+            }
+        });
 
-    gene9 = new JMenuItem();
-    gene9.setBackground(Color.WHITE);
-    gene9.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.WHITE);
-            menu.setText("w");
-        }
-    });
+        gene9 = new JMenuItem();
+        gene9.setBackground(Color.WHITE);
+        gene9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.WHITE);
+                menu.setText("w");
+            }
+        });
 
-    gene10 = new JMenuItem();
-    gene10.setBackground(Color.CYAN);
-    gene10.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.CYAN);
-            menu.setText("c");
-        }
-    });
+        gene10 = new JMenuItem();
+        gene10.setBackground(Color.CYAN);
+        gene10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.CYAN);
+                menu.setText("c");
+            }
+        });
 
-    gene11 = new JMenuItem();
-    gene11.setBackground(Color.MAGENTA);
-    gene11.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.MAGENTA);
-            menu.setText("m");
-        }
-    });
+        gene11 = new JMenuItem();
+        gene11.setBackground(Color.MAGENTA);
+        gene11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.MAGENTA);
+                menu.setText("m");
+            }
+        });
 
-    gene12 = new JMenuItem();
-    gene12.setBackground(Color.LIGHT_GRAY);
-    gene12.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.LIGHT_GRAY);
-            menu.setText("lgr");
-        }
-    });
+        gene12 = new JMenuItem();
+        gene12.setBackground(Color.LIGHT_GRAY);
+        gene12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.LIGHT_GRAY);
+                menu.setText("lgr");
+            }
+        });
 
-    gene13 = new JMenuItem();
-    gene13.setBackground(Color.ORANGE);
-    gene13.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            menuBar.setBackground(Color.ORANGE);
-            menu.setText("o");
-        }
-    });
+        gene13 = new JMenuItem();
+        gene13.setBackground(Color.ORANGE);
+        gene13.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.ORANGE);
+                menu.setText("o");
+            }
+        });
 
-    menu.add(gene1); menu.add(gene2); menu.add(gene3); menu.add(gene4); menu.add(gene5); menu.add(gene6); menu.add(gene7);
-    menu.add(gene8); menu.add(gene9); menu.add(gene10); menu.add(gene11); menu.add(gene12); menu.add(gene13);
-    menuBar.add(menu);
-    panel.add(menuBar);
+        menu.add(gene1); menu.add(gene2); menu.add(gene3); menu.add(gene4); menu.add(gene5); menu.add(gene6); menu.add(gene7);
+        menu.add(gene8); menu.add(gene9); menu.add(gene10); menu.add(gene11); menu.add(gene12); menu.add(gene13);
+        menuBar.add(menu);
+        panel.add(menuBar);
 
-    return menu;
-}
+        return menu;
+    }
     private JMenu menu2(){
         menu2 = new JMenu();
         gene1 = new JMenuItem();
@@ -967,35 +836,7 @@ private JMenu menu(){
     }
 
 
-    //Save New Pigeon To father json file
-private void saveJsonToFileFather() {
-    try {
-        // Read existing data
-        List<BreedingPigeons> existingData = new ArrayList<>();
-        Type pigeonListType = new TypeToken<List<BreedingPigeons>>() {}.getType();
-        try (Reader reader = new FileReader("src/Fathers.json")) {
-            existingData = gson.fromJson(reader, pigeonListType);
-            if (existingData == null) {
-                existingData = new ArrayList<>();
-            }
-        } catch (FileNotFoundException e) {
-            // File not found, initialize with empty list
-        }
-
-        // Add new data
-        existingData.addAll(breedPigeonsData);
-
-        // Write updated data
-        try (FileWriter writer = new FileWriter("src/Fathers.json")) {
-            gson.toJson(existingData, writer);
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
-//-----------
-
-    //Save New Pigeon To father json file
+    //Save New Pigeon To Mother json file
     private void saveJsonToFileMother() {
         try {
             // Read existing data
@@ -1023,9 +864,10 @@ private void saveJsonToFileFather() {
     }
 //-----------
 
-//Set AddBreederWindow visible
-public void show() {
-    frame.setVisible(true);
-}
+    //Set AddBreederWindow visible
+    public void show() {
+        frame.setVisible(true);
+    }
 }
 //---------
+

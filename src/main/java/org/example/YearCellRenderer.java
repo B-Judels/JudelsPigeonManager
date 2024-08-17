@@ -8,7 +8,7 @@ public class YearCellRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        Component cellComponent = super.getTableCellRendererComponent(table, value, isSelected,hasFocus, row, column);
 
         // Check if this is the "Year" column (column index 2 in your case)
         if (column == 2) {
