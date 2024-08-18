@@ -17,12 +17,21 @@ public class Pigeons {
     private String pigeonLetters;
     private String pigeonWeaned;
     private int pigeonFlyed;
+    private String gC1;
+    private String gC2;
+    private String gC3;
+    private String gC4;
+    private String gC5;
+    private String gC6;
+    private String gC7;
+    private String gC8;
 
     public Pigeons(String pigeonID, String pigeonCallingCard, String pigeonYear,
                    int pigeonScored, double pigeonScorePercentage, int pigeonWins,
                    String pigeonFather, String pigeonMother, String pigeonLetters,
                    String pigeonColour, String pigeonGender,String pigeonWeaned,
-                   int PigeonFlyed) {
+                   int PigeonFlyed, String gC1, String gC2, String gC3, String gC4,
+                   String gC5, String gC6, String gC7, String gC8) {
 
         this.pigeonID = pigeonID;
         this.PigeonCallingCard = pigeonCallingCard;
@@ -36,6 +45,14 @@ public class Pigeons {
         this.pigeonGender = pigeonGender;
         this.pigeonLetters = pigeonLetters;
         this.pigeonWeaned = pigeonWeaned;
+        this.gC1 = gC1;
+        this.gC2 = gC2;
+        this.gC3 = gC3;
+        this.gC4 = gC4;
+        this.gC5 = gC5;
+        this.gC6 = gC6;
+        this.gC7 = gC7;
+        this.gC8 = gC8;
     }
   //ID methods
     public String getPigeonID() {
@@ -145,5 +162,60 @@ public class Pigeons {
         this.pigeonLetters = pigeonLetters;
     }
 //---
+    public String getgC1(){
+        return gC1;
+    }
+    public void setgC1(String gC1){
+        this.gC1 = gC1;
+    }
+
+    public String getgC2(){
+        return gC2;
+    }
+    public void setgC2(String gC2){
+        this.gC2 = gC2;
+    }
+
+    public String getgC3(){
+        return gC3;
+    }
+    public void setgC3(String gC3){
+        this.gC3 = gC3;
+    }
+
+    public String getgC4(){
+        return gC4;
+    }
+    public void setgC4(String gC4){
+        this.gC4 = gC4;
+    }
+
+    public String getgC5(){
+        return gC5;
+    }
+    public void setgC5(String gC5){
+        this.gC5 = gC5;
+    }
+
+    public String getgC6(){
+        return gC6;
+    }
+    public void setgC6(String gC6){
+        this.gC6 = gC6;
+    }
+
+    public String getgC7(){
+        return gC7;
+    }
+    public void setgC7(String gC7){
+        this.gC7 = gC7;
+    }
+
+    public String getgC8(){
+        return gC8;
+    }
+    public void setgC8(String gC8){
+        this.gC8 = gC8;
+    }
 
 }

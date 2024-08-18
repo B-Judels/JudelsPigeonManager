@@ -44,10 +44,18 @@ public class AddPigeonWindow {
     private List<BreedingPigeons> breedPigeonsData;
     private List<BreedingPigeons> breedPigeonsData2;
     private JTextField textField3;
-    JMenuBar menuBar;
-    JMenu menu;
-    JMenu menu2;
-    JMenuItem menuItem;
+    private JMenuBar menuBar;
+    private JMenu menu;
+    private JMenu menu2;
+    private JMenuItem menuItem;
+    private String gC1;
+    private String gC2;
+    private String gC3;
+    private String gC4;
+    private String gC5;
+    private String gC6;
+    private String gC7;
+    private String gC8;
 
     AddPigeonWindow() {
         gson = new Gson();
@@ -190,6 +198,11 @@ public class AddPigeonWindow {
                         public void actionPerformed(ActionEvent e) {
                             for (int i = 0; i < breedPigeonsData.size(); i++){
                                 menu.setText(breedPigeonsData.get(i).getBPigeonName());
+                                gC1 = breedPigeonsData.get(i).getBGeneticCode1();
+                                gC2 = breedPigeonsData.get(i).getBGeneticCode2();
+                                gC3 = breedPigeonsData.get(i).getBGeneticCode3();
+                                gC4 = breedPigeonsData.get(i).getBGeneticCode4();
+
                             }
 
                         }
@@ -214,6 +227,10 @@ public class AddPigeonWindow {
                 public void actionPerformed(ActionEvent e) {
                     for (int i = 0; i < breedPigeonsData2.size(); i++){
                         menu2.setText(breedPigeonsData2.get(i).getBPigeonName());
+                        gC5 = breedPigeonsData2.get(i).getBGeneticCode1();
+                        gC6 = breedPigeonsData2.get(i).getBGeneticCode2();
+                        gC7 = breedPigeonsData2.get(i).getBGeneticCode3();
+                        gC8 = breedPigeonsData2.get(i).getBGeneticCode4();
                     }
 
                 }
@@ -316,7 +333,8 @@ public class AddPigeonWindow {
                     String weaned = textField12.getText();
                     //---------
                     // Add to the pigeons data list
-                    Pigeons pigeon = new Pigeons(id, callingCard, year, score, scoreOdss, wins, father, mother, colour, gender, letters, weaned, flyed);
+                    Pigeons pigeon = new Pigeons(id, callingCard, year, score, scoreOdss, wins, father, mother, colour, gender, letters, weaned, flyed,
+                            gC1, gC2, gC3, gC4, gC5, gC6, gC7, gC8);
                     pigeonsData.add(pigeon);
                     //----------
                     // Save updated data to JSON file
@@ -329,8 +347,6 @@ public class AddPigeonWindow {
                     textField4.setText("Times Scored");
                     textField5.setText("Times Flyed");
                     textField6.setText("Wins");
-                    textField7.setText("Father");
-                    textField8.setText("Mother");
                     textField9.setText("Colour");
                     textField10.setText("Gender");
                     textField11.setText("Letters");

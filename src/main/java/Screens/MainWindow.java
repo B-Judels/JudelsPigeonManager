@@ -24,10 +24,13 @@ import java.util.List;
 public class MainWindow {
 
     private DefaultTableModel tableModel;
+    private DefaultTableModel tableModel_2;
     private JFrame frame;
     private JPanel panel;
     private JTable table;
+    private JTable table_2;
     private JScrollPane scrollPane;
+    private JScrollPane scrollPane_2;
     private JButton button;
     private JLabel label;
     private Gson gson;
@@ -110,26 +113,31 @@ public class MainWindow {
         scrollPane.setSize(500, 500);
         panel.add(scrollPane);
 
-//        tableModel_2 = new DefaultTableModel(new String[]{"G1", "G2", "G3","G4","G5", "G6", "G7","G8"}, 0);
-//        table_2 = new JTable(tableModel_2);
-//        table_2.setBounds(550, 100, 100, 200);
-//
-//        // Load data into the table
-//        for (BreedingPigeons pigeon2 : pigeonsData2) {
-//            tableModel_2.addRow(new Object[]{pigeon2.getBGeneticCode1(),
-//                    pigeon2.getBGeneticCode2(), pigeon2.getBGeneticCode3(), pigeon2.getBGeneticCode4()});
-//        }
-//
-//        table_2.getColumnModel().getColumn(0).setCellRenderer(new GCodeCellRenderer());
-//        table_2.getColumnModel().getColumn(1).setCellRenderer(new GCodeCellRenderer());
-//        table_2.getColumnModel().getColumn(2).setCellRenderer(new GCodeCellRenderer());
-//        table_2.getColumnModel().getColumn(3).setCellRenderer(new GCodeCellRenderer());
-//
-//
-//        scrollPane_2 = new JScrollPane(table_2);
-//        scrollPane_2.setBounds(499, 50, 40, 300);
-//        scrollPane_2.setSize(80, 500);
-//        panel.add(scrollPane_2);
+        tableModel_2 = new DefaultTableModel(new String[]{"G1", "G2", "G3","G4","G5", "G6", "G7","G8"}, 0);
+        table_2 = new JTable(tableModel_2);
+        table_2.setBounds(550, 100, 100, 200);
+
+        // Load data into the table
+        for (Pigeons pigeon2 : pigeonsData) {
+            tableModel_2.addRow(new Object[]{pigeon2.getgC1(),pigeon2.getgC2(), pigeon2.getgC3(), pigeon2.getgC4(), pigeon2.getgC5(),
+            pigeon2.getgC6(), pigeon2.getgC7(), pigeon2.getgC8()});
+
+        }
+
+        table_2.getColumnModel().getColumn(0).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(1).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(2).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(3).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(4).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(5).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(6).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(7).setCellRenderer(new GCodeCellRenderer());
+
+
+        scrollPane_2 = new JScrollPane(table_2);
+        scrollPane_2.setBounds(519, 50, 40, 300);
+        scrollPane_2.setSize(160, 500);
+        panel.add(scrollPane_2);
 
     }
 
