@@ -56,6 +56,11 @@ public class AddPigeonWindow {
     private String gC6;
     private String gC7;
     private String gC8;
+    private JMenuBar colorMenuBar;
+    private JMenu colorMenu;
+    private JMenuBar genderMenuBar;
+    private JMenu genderMenu;
+    private JMenuItem c1, c2, c3, c4, c5, c6, c7, c8, c9, g1, g2;
 
     AddPigeonWindow() {
         gson = new Gson();
@@ -241,36 +246,120 @@ public class AddPigeonWindow {
 
 //---------
 //Colour Input
-        textField9 = new JTextField("Colour");
-        textField9.setBounds(620, 100, 100, 20);
-        textField9.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField9.getText().equals("Colour"))
-                    textField9.setText("");
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (textField9.getText().equals(""))
-                    textField9.setText("Colour");
+        colorMenuBar = new JMenuBar();
+        colorMenu = new JMenu("Color");
+        c1 = new JMenuItem();
+        c1.setText("BB");
+        c2 = new JMenuItem();
+        c2.setText("CH");
+        c3 = new JMenuItem();
+        c3.setText("BBWF");
+        c4 = new JMenuItem();
+        c4.setText("CHWF");
+        c5 = new JMenuItem();
+        c5.setText("BBPD");
+        c6 = new JMenuItem();
+        c6.setText("CHPD");
+        c7 = new JMenuItem();
+        c7.setText("BLCK");
+        c8 = new JMenuItem();
+        c8.setText("RED");
+        c9 = new JMenuItem();
+        c9.setText("MEAL");
+        colorMenu.add(c1);
+        colorMenu.add(c2);
+        colorMenu.add(c3);
+        colorMenu.add(c4);
+        colorMenu.add(c5);
+        colorMenu.add(c6);
+        colorMenu.add(c7);
+        colorMenu.add(c8);
+        colorMenu.add(c9);
+        c1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("BB");
             }
         });
-        panel.add(textField9);
+        c2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("CH");
+            }
+        });
+        c3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("BBWF");
+            }
+        });
+        c4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("CHWF");
+            }
+        });
+        c5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("BBPD");
+            }
+        });
+        c6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("CHPD");
+            }
+        });
+        c7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("BL");
+            }
+        });
+        c8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("RED");
+            }
+        });
+        c9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("MEAL");
+            }
+        });
+        colorMenuBar.add(colorMenu);
+        colorMenuBar.setBounds(620, 100, 100, 20);
+        panel.add(colorMenuBar);
 //------------
 //Gender Input
-        textField10 = new JTextField("Gender");
-        textField10.setBounds(500, 100, 100, 20);
-        textField10.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField10.getText().equals("Gender"))
-                    textField10.setText("");
-            }
 
-            public void focusLost(FocusEvent e) {
-                if (textField10.getText().equals(""))
-                    textField10.setText("Gender");
+        genderMenuBar = new JMenuBar();
+        genderMenuBar.setBounds(500, 100, 100, 20);
+        genderMenu = new JMenu("Gender");
+        g1 = new JMenuItem();
+        g1.setText("C");
+        g1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                genderMenu.setText("C");
             }
         });
-        panel.add(textField10);
+        g2 = new JMenuItem();
+        g2.setText("H");
+        g2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                genderMenu.setText("H");
+            }
+        });
+        genderMenu.add(g1);
+        genderMenu.add(g2);
+        genderMenuBar.add(genderMenu);
+        panel.add(genderMenuBar);
+
+
 //-----------
 //Letters Input
         textField11 = new JTextField("Letters");
@@ -327,8 +416,8 @@ public class AddPigeonWindow {
                     int wins = Integer.parseInt(textField6.getText());
                     String father = menu.getText();
                     String mother = menu2.getText();
-                    String colour = textField9.getText();
-                    String gender = textField10.getText();
+                    String colour = colorMenu.getText();
+                    String gender = genderMenu.getText();
                     String letters = textField11.getText();
                     String weaned = textField12.getText();
                     //---------
@@ -347,8 +436,10 @@ public class AddPigeonWindow {
                     textField4.setText("Times Scored");
                     textField5.setText("Times Flyed");
                     textField6.setText("Wins");
-                    textField9.setText("Colour");
-                    textField10.setText("Gender");
+                    colorMenu.setText("Colour");
+                    menu.setText("Father");
+                    menu2.setText("Mother");
+                    genderMenu.setText("Gender");
                     textField11.setText("Letters");
                     textField12.setText("Date Weaned");
                     //----
