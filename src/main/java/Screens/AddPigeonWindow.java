@@ -202,26 +202,27 @@ public class AddPigeonWindow {
         menuBar = new JMenuBar();
         menuBar.setBounds(380, 150, 100, 20);
         menu = new JMenu("Father");
-                for (int i = 0; i < breedPigeonsData.size(); i++){
-                    menuItem = new JMenuItem();
-                    menuItem.setText(breedPigeonsData.get(i).getBPigeonName());
-                    System.out.println("the name: " + breedPigeonsData.get(i).getBPigeonName());
-                    menu.add(menuItem);
-                    menuItem.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            for (int i = 0; i < breedPigeonsData.size(); i++){
-                                menu.setText(breedPigeonsData.get(i).getBPigeonName());
-                                gC1 = breedPigeonsData.get(i).getBGeneticCode1();
-                                gC2 = breedPigeonsData.get(i).getBGeneticCode2();
-                                gC3 = breedPigeonsData.get(i).getBGeneticCode3();
-                                gC4 = breedPigeonsData.get(i).getBGeneticCode4();
+        for (int i = 0; i < breedPigeonsData.size(); i++){
+            JMenuItem menuItem = new JMenuItem();
+            menuItem.setText(breedPigeonsData.get(i).getBPigeonName());
+            menu.add(menuItem);
 
-                            }
+            // Capture the value of i at this point in a final variable
+            final int selectedIndex = i;
 
-                        }
-                    });}
-
+            menuItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Use selectedIndex instead of j
+                    menu.setText(breedPigeonsData.get(selectedIndex).getBPigeonName());
+                    gC1 = breedPigeonsData.get(selectedIndex).getBGeneticCode1();
+                    gC2 = breedPigeonsData.get(selectedIndex).getBGeneticCode2();
+                    gC3 = breedPigeonsData.get(selectedIndex).getBGeneticCode3();
+                    gC4 = breedPigeonsData.get(selectedIndex).getBGeneticCode4();
+                    System.out.println(selectedIndex);
+                }
+            });
+        }
         menuBar.add(menu);
         panel.add(menuBar);
 
@@ -232,23 +233,26 @@ public class AddPigeonWindow {
         menuBar.setBounds(500, 150, 100, 20);
         menu2 = new JMenu("Mother");
         for (int i = 0; i < breedPigeonsData2.size(); i++){
-            menuItem = new JMenuItem();
+            JMenuItem menuItem = new JMenuItem();
             menuItem.setText(breedPigeonsData2.get(i).getBPigeonName());
-            System.out.println("the name: " + breedPigeonsData2.get(i).getBPigeonName());
             menu2.add(menuItem);
+
+            // Capture the value of i at this point in a final variable
+            final int selectedIndex2 = i;
+
             menuItem.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    for (int i = 0; i < breedPigeonsData2.size(); i++){
-                        menu2.setText(breedPigeonsData2.get(i).getBPigeonName());
-                        gC5 = breedPigeonsData2.get(i).getBGeneticCode1();
-                        gC6 = breedPigeonsData2.get(i).getBGeneticCode2();
-                        gC7 = breedPigeonsData2.get(i).getBGeneticCode3();
-                        gC8 = breedPigeonsData2.get(i).getBGeneticCode4();
-                    }
-
+                    // Use selectedIndex instead of j
+                    menu2.setText(breedPigeonsData2.get(selectedIndex2).getBPigeonName());
+                    gC5 = breedPigeonsData2.get(selectedIndex2).getBGeneticCode1();
+                    gC6 = breedPigeonsData2.get(selectedIndex2).getBGeneticCode2();
+                    gC7 = breedPigeonsData2.get(selectedIndex2).getBGeneticCode3();
+                    gC8 = breedPigeonsData2.get(selectedIndex2).getBGeneticCode4();
+                    System.out.println(selectedIndex2);
                 }
-            });}
+            });
+        }
 
         menuBar.add(menu2);
         panel.add(menuBar);
