@@ -20,12 +20,18 @@ import java.util.List;
 
 public class HatcheryWindow {
     private DefaultTableModel tableModel;
+    private DefaultTableModel tableModel_;
+    private DefaultTableModel tableModel_2;
     private DefaultTableModel tableModel2;
     private JFrame frame;
     private JPanel panel;
     private JTable table;
+    private JTable table_;
+    private JTable table_2;
     private JTable table2;
     private JScrollPane scrollPane;
+    private JScrollPane scrollPane_;
+    private JScrollPane scrollPane_2;
     private JScrollPane scrollPane2;
     private JButton button;
     private Gson gson;
@@ -101,54 +107,93 @@ public class HatcheryWindow {
 
 
 
-        tableModel = new DefaultTableModel(new String[]{"ID", "Name", "Year", "Letters", "Colour", "G1", "G2", "G3","G4"}, 0);
+        tableModel = new DefaultTableModel(new String[]{"ID", "Name", "Year", "Letters", "Colour"}, 0);
         table = new JTable(tableModel);
         table.setBounds(30, 100, 500, 200);
 
         // Load data into the table
         for (BreedingPigeons pigeon : pigeonsData) {
             tableModel.addRow(new Object[]{pigeon.getBPigeonID(), pigeon.getBPigeonName(),
-                    pigeon.getBPigeonYear(), pigeon.getBPigeonLetters(), pigeon.getBPigeonColour(), pigeon.getBGeneticCode1(),
-                     pigeon.getBGeneticCode2(), pigeon.getBGeneticCode3(), pigeon.getBGeneticCode4()});
+                    pigeon.getBPigeonYear(), pigeon.getBPigeonLetters(), pigeon.getBPigeonColour()});
         }
 
-        // Set custom renderer for the "Year" column (index 2)
         table.getColumnModel().getColumn(2).setCellRenderer(new YearCellRenderer());
-        table.getColumnModel().getColumn(5).setCellRenderer(new GCodeCellRenderer());
-        table.getColumnModel().getColumn(6).setCellRenderer(new GCodeCellRenderer());
-        table.getColumnModel().getColumn(7).setCellRenderer(new GCodeCellRenderer());
-        table.getColumnModel().getColumn(8).setCellRenderer(new GCodeCellRenderer());
-
 
         scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(20, 50, 200, 300);
-        scrollPane.setSize(500, 500);
+        scrollPane.setBounds(20, 50, 40, 300);
+        scrollPane.setSize(300, 500);
         panel.add(scrollPane);
 
-        tableModel2 = new DefaultTableModel(new String[]{"ID", "Name", "Year", "Letters", "Colour", "G1", "G2", "G3","G4"}, 0);
+        tableModel_ = new DefaultTableModel(new String[]{"G1", "G2", "G3","G4"}, 0);
+        table_ = new JTable(tableModel_);
+        table_.setBounds(510, 100, 100, 200);
+
+        // Load data into the table
+        for (BreedingPigeons pigeon : pigeonsData) {
+            tableModel_.addRow(new Object[]{pigeon.getBGeneticCode1(),
+                    pigeon.getBGeneticCode2(), pigeon.getBGeneticCode3(), pigeon.getBGeneticCode4()});
+        }
+
+        table_.getColumnModel().getColumn(0).setCellRenderer(new GCodeCellRenderer());
+        table_.getColumnModel().getColumn(1).setCellRenderer(new GCodeCellRenderer());
+        table_.getColumnModel().getColumn(2).setCellRenderer(new GCodeCellRenderer());
+        table_.getColumnModel().getColumn(3).setCellRenderer(new GCodeCellRenderer());
+
+
+        scrollPane_ = new JScrollPane(table_);
+        scrollPane_.setBounds(319, 50, 40, 300);
+        scrollPane_.setSize(80, 500);
+        panel.add(scrollPane_);
+
+
+
+
+        tableModel2 = new DefaultTableModel(new String[]{"ID", "Name", "Year", "Letters", "Colour"}, 0);
         table2 = new JTable(tableModel2);
         table2.setBounds(30, 100, 500, 200);
 
         // Load data into the table
         for (BreedingPigeons pigeon2 : pigeonsData2) {
             tableModel2.addRow(new Object[]{pigeon2.getBPigeonID(), pigeon2.getBPigeonName(),
-                    pigeon2.getBPigeonYear(), pigeon2.getBPigeonLetters(), pigeon2.getBPigeonColour(), pigeon2.getBGeneticCode1(),
-                    pigeon2.getBGeneticCode2(), pigeon2.getBGeneticCode3(), pigeon2.getBGeneticCode4()});
+                    pigeon2.getBPigeonYear(), pigeon2.getBPigeonLetters(), pigeon2.getBPigeonColour()});
 
         };
 
         // Set custom renderer for the "Year" column (index 2)
         table2.getColumnModel().getColumn(2).setCellRenderer(new YearCellRenderer());
-        table2.getColumnModel().getColumn(5).setCellRenderer(new GCodeCellRenderer());
-        table2.getColumnModel().getColumn(6).setCellRenderer(new GCodeCellRenderer());
-        table2.getColumnModel().getColumn(7).setCellRenderer(new GCodeCellRenderer());
-        table2.getColumnModel().getColumn(8).setCellRenderer(new GCodeCellRenderer());
-
 
         scrollPane2 = new JScrollPane(table2);
-        scrollPane2.setBounds(540, 50, 200, 300);
-        scrollPane2.setSize(500, 500);
+        scrollPane2.setBounds(550, 50, 40, 300);
+        scrollPane2.setSize(300, 500);
         panel.add(scrollPane2);
+
+
+        tableModel_2 = new DefaultTableModel(new String[]{"G1", "G2", "G3","G4"}, 0);
+        table_2 = new JTable(tableModel_2);
+        table_2.setBounds(550, 100, 100, 200);
+
+        // Load data into the table
+        for (BreedingPigeons pigeon2 : pigeonsData2) {
+            tableModel_2.addRow(new Object[]{pigeon2.getBGeneticCode1(),
+                    pigeon2.getBGeneticCode2(), pigeon2.getBGeneticCode3(), pigeon2.getBGeneticCode4()});
+        }
+
+        table_2.getColumnModel().getColumn(0).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(1).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(2).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(3).setCellRenderer(new GCodeCellRenderer());
+
+
+        scrollPane_2 = new JScrollPane(table_2);
+        scrollPane_2.setBounds(849, 50, 40, 300);
+        scrollPane_2.setSize(80, 500);
+        panel.add(scrollPane_2);
+
+
+        table_2.getColumnModel().getColumn(0).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(1).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(2).setCellRenderer(new GCodeCellRenderer());
+        table_2.getColumnModel().getColumn(3).setCellRenderer(new GCodeCellRenderer());
 
     }
 
