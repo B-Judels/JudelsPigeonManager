@@ -47,7 +47,7 @@ public class AddBreedersWindow {
     private JMenu menu3;
     private JMenuBar menuBar4;
     private JMenu menu4;
-    private JMenuItem gene1;
+    private JMenuItem gene1, c1, c2, c3, c4,c5,c6,c7,c8,c9,c10,c11,c12;
     private JMenuItem gene2;
     private JMenuItem gene3;
     private JMenuItem gene4;
@@ -60,6 +60,8 @@ public class AddBreedersWindow {
     private JMenuItem gene11;
     private JMenuItem gene12;
     private JMenuItem gene13;
+    private JMenu colorMenu;
+    private JMenuBar colorMenuBar;
 
 
     public AddBreedersWindow() {
@@ -142,21 +144,120 @@ public class AddBreedersWindow {
         panel.add(textField3);
 //----------
 //Colour Input
-        textField4 = new JTextField("Colour");
-        textField4.setBounds(620, 100, 100, 20);
-        textField4.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField4.getText().equals("Colour"))
-                    textField4.setText("");
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (textField4.getText().equals(""))
-                    textField4.setText("Colour");
+        colorMenuBar = new JMenuBar();
+        colorMenu = new JMenu("Color");
+        c1 = new JMenuItem();
+        c1.setText("BB");
+        c2 = new JMenuItem();
+        c2.setText("CH");
+        c3 = new JMenuItem();
+        c3.setText("BB WF");
+        c4 = new JMenuItem();
+        c4.setText("CH WF");
+        c5 = new JMenuItem();
+        c5.setText("BB PD");
+        c6 = new JMenuItem();
+        c6.setText("CH PD");
+        c7 = new JMenuItem();
+        c7.setText("DRK CH");
+        c8 = new JMenuItem();
+        c8.setText("RED CH");
+        c9 = new JMenuItem();
+        c9.setText("BLACK");
+        c10 = new JMenuItem();
+        c10.setText("GRIZZLE");
+        c11 = new JMenuItem();
+        c11.setText("DUNN");
+        c12 = new JMenuItem();
+        c12.setText("WHITE");
+        colorMenu.add(c1);
+        colorMenu.add(c2);
+        colorMenu.add(c3);
+        colorMenu.add(c4);
+        colorMenu.add(c5);
+        colorMenu.add(c6);
+        colorMenu.add(c7);
+        colorMenu.add(c8);
+        colorMenu.add(c9);
+        c1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("BB");
             }
         });
-        panel.add(textField4);
-//------------
+        c2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("CH");
+            }
+        });
+        c3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("BB WF");
+            }
+        });
+        c4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("CH WF");
+            }
+        });
+        c5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("BB PD");
+            }
+        });
+        c6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("CH PD");
+            }
+        });
+        c7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("DRK CH");
+            }
+        });
+        c8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("RED CH");
+            }
+        });
+        c9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("BLACK");
+            }
+        });
+        c10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("GRIZZLE");
+            }
+        });
+        c11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("DUNN");
+            }
+        });
+        c12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                colorMenu.setText("WHITE");
+            }
+        });
+        colorMenu.add(c10);
+        colorMenu.add(c11);
+        colorMenu.add(c12);
+        colorMenuBar.add(colorMenu);
+        colorMenuBar.setBounds(620, 100, 100, 20);
+        panel.add(colorMenuBar);
+//       ------------
 //Letters Input
         textField6 = new JTextField("Letters");
         textField6.setBounds(380, 100, 100, 20);
@@ -212,7 +313,7 @@ public class AddBreedersWindow {
                     String id = textField.getText();
                     String callingCard = textField2.getText();
                     String year = textField3.getText();
-                    String colour = textField4.getText();
+                    String colour = colorMenu.getText();
                     String gender = "C";
                     String letters = textField6.getText();
                     String gCode1 = menu.getText();
@@ -232,7 +333,7 @@ public class AddBreedersWindow {
                     textField.setText("Pigeon ID");
                     textField2.setText("Name");
                     textField3.setText("Year");
-                    textField4.setText("Colour");
+                    colorMenu.setText("Colour");
                     textField6.setText("Letters");
                     //----
                 } catch (Exception ex) {
