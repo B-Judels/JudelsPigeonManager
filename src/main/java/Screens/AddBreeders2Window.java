@@ -70,13 +70,13 @@ public class AddBreeders2Window {
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        frame.setTitle("JudelsPigeonManager");
+        frame.setTitle("Judels Pigeon Manager|Add Mother");
 
         panel = new JPanel();
         panel.setLayout(null);
         frame.add(panel);
 
-        button = new JButton("Team");
+        button = new JButton("Back");
         button.setBackground(Color.CYAN);
         button.setEnabled(true);
         button.setBounds(0, 0, 80, 20);
@@ -85,45 +85,10 @@ public class AddBreeders2Window {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                MainWindow main = new MainWindow();
-                main.show();
+                HatcheryWindow hatch = new HatcheryWindow();
+                hatch.show();
             }
         });
-
-        button = new JButton("Add Pigeon");
-        button.setBackground(Color.CYAN);
-        button.setEnabled(true);
-        button.setBounds(90, 0, 120, 20);
-        panel.add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
-                AddPigeonWindow add = new AddPigeonWindow();
-                add.show();
-            }
-        });
-
-        button = new JButton("Add Breeder");
-        button.setBackground(Color.CYAN);
-        button.setEnabled(true);
-        button.setBounds(220, 0, 120, 20);
-        panel.add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
-                AddBreedersWindow addbreed = new AddBreedersWindow();
-                addbreed.show();
-            }
-        });
-
-        button = new JButton("Add Mother");
-        button.setBackground(Color.CYAN);
-        button.setEnabled(false);
-        button.setBounds(370, 0, 120, 20);
-        panel.add(button);
-
 
 //Pigeon ID Input
         textField = new JTextField("Pigeon ID");

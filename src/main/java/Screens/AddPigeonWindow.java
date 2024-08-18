@@ -57,8 +57,7 @@ public class AddPigeonWindow {
         panel = new JPanel();
         panel.setLayout(null);
         frame.add(panel);
-
-        button = new JButton("Team");
+        button = new JButton("Back");
         button.setBackground(Color.CYAN);
         button.setEnabled(true);
         button.setBounds(0, 0, 80, 20);
@@ -71,13 +70,6 @@ public class AddPigeonWindow {
                 main.show();
             }
         });
-
-        button = new JButton("Add Pigeon");
-        button.setBackground(Color.CYAN);
-        button.setEnabled(false);
-        button.setBounds(90, 0, 120, 20);
-        panel.add(button);
-
 
 //Pigeon ID Input
         textField = new JTextField("Pigeon ID");

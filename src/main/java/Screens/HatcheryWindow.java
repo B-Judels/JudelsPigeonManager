@@ -47,10 +47,10 @@ public class HatcheryWindow {
         loadJsonFromFileMother();
 
         frame = new JFrame();
-        frame.setSize(1200,600);
+        frame.setSize(800,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        frame.setTitle("JudelsPigeonManager");
+        frame.setTitle("Judels Pigeon Manager|Hatchery");
 
         panel = new JPanel();
         panel.setLayout(null);
@@ -61,25 +61,19 @@ public class HatcheryWindow {
         button.setEnabled(true);
         button.setBounds(0, 0, 80, 20);
         panel.add(button);
-
-        button = new JButton("Add Pigeon");
-        button.setBackground(Color.CYAN);
-        button.setEnabled(true);
-        button.setBounds(90, 0, 120, 20);
-        panel.add(button);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
-                AddPigeonWindow add = new AddPigeonWindow();
-                add.show();
+                MainWindow main = new MainWindow();
+                main.show();
             }
         });
 
-        button = new JButton("Add Breeder");
+        button = new JButton("+ Father");
         button.setBackground(Color.CYAN);
         button.setEnabled(true);
-        button.setBounds(220, 0, 120, 20);
+        button.setBounds(0, 35, 90, 15);
         panel.add(button);
         button.addActionListener(new ActionListener() {
             @Override
@@ -90,10 +84,24 @@ public class HatcheryWindow {
             }
         });
 
+        button = new JButton("+ Mother");
+        button.setBackground(Color.CYAN);
+        button.setEnabled(true);
+        button.setBounds(400, 35, 90, 15);
+        panel.add(button);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                AddBreeders2Window addB2 = new AddBreeders2Window();
+                addB2.show();
+            }
+        });
+
         button = new JButton("Hatchery");
         button.setBackground(Color.CYAN);
         button.setEnabled(false);
-        button.setBounds(350, 0, 120, 20);
+        button.setBounds(85, 0, 120, 20);
         panel.add(button);
         button.addActionListener(new ActionListener() {
             @Override
@@ -120,7 +128,7 @@ public class HatcheryWindow {
         table.getColumnModel().getColumn(2).setCellRenderer(new YearCellRenderer());
 
         scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(20, 50, 40, 300);
+        scrollPane.setBounds(0, 50, 40, 300);
         scrollPane.setSize(300, 500);
         panel.add(scrollPane);
 
@@ -141,7 +149,7 @@ public class HatcheryWindow {
 
 
         scrollPane_ = new JScrollPane(table_);
-        scrollPane_.setBounds(319, 50, 40, 300);
+        scrollPane_.setBounds(299, 50, 40, 300);
         scrollPane_.setSize(80, 500);
         panel.add(scrollPane_);
 
@@ -163,7 +171,7 @@ public class HatcheryWindow {
         table2.getColumnModel().getColumn(2).setCellRenderer(new YearCellRenderer());
 
         scrollPane2 = new JScrollPane(table2);
-        scrollPane2.setBounds(550, 50, 40, 300);
+        scrollPane2.setBounds(400, 50, 300, 300);
         scrollPane2.setSize(300, 500);
         panel.add(scrollPane2);
 
@@ -185,7 +193,7 @@ public class HatcheryWindow {
 
 
         scrollPane_2 = new JScrollPane(table_2);
-        scrollPane_2.setBounds(849, 50, 40, 300);
+        scrollPane_2.setBounds(699, 50, 40, 300);
         scrollPane_2.setSize(80, 500);
         panel.add(scrollPane_2);
 

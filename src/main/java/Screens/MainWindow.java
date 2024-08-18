@@ -45,7 +45,7 @@ public class MainWindow {
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        frame.setTitle("JudelsPigeonManager");
+        frame.setTitle("Judels Pigeon Manager|Racing Team");
 
         panel = new JPanel();
         panel.setLayout(null);
@@ -57,10 +57,10 @@ public class MainWindow {
         button.setBounds(0, 0, 80, 20);
         panel.add(button);
 
-        button = new JButton("Add Pigeon");
+        button = new JButton("+ Racer");
         button.setBackground(Color.CYAN);
         button.setEnabled(true);
-        button.setBounds(90, 0, 120, 20);
+        button.setBounds(20, 35, 90, 15);
         panel.add(button);
         button.addActionListener(new ActionListener() {
             @Override
@@ -70,28 +70,11 @@ public class MainWindow {
                 add.show();
             }
         });
-        try {
-            button = new JButton("Add Breeder");
-            button.setBackground(Color.CYAN);
-            button.setEnabled(true);
-            button.setBounds(220, 0, 120, 20);
-            panel.add(button);
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    frame.setVisible(false);
-                    AddBreedersWindow addB = new AddBreedersWindow();
-                    addB.show();
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         button = new JButton("Hatchery");
         button.setBackground(Color.CYAN);
         button.setEnabled(true);
-        button.setBounds(350, 0, 120, 20);
+        button.setBounds(85, 0, 120, 20);
         panel.add(button);
         button.addActionListener(new ActionListener() {
             @Override
@@ -101,6 +84,8 @@ public class MainWindow {
                 hatch.show();
             }
         });
+
+
 
 
 
@@ -119,7 +104,7 @@ public class MainWindow {
         table.getColumnModel().getColumn(2).setCellRenderer(new YearCellRenderer());
 
         scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(40, 50, 200, 300);
+        scrollPane.setBounds(20, 50, 200, 300);
         scrollPane.setSize(700, 500);
         panel.add(scrollPane);
     }
