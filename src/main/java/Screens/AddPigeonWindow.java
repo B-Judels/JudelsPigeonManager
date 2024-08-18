@@ -1,6 +1,7 @@
 package Screens;
 
 import com.google.gson.Gson;
+import org.example.BreedingPigeons;
 import org.example.Pigeons;
 
 import javax.swing.*;
@@ -40,13 +41,21 @@ public class AddPigeonWindow {
     private JLabel label;
     private Gson gson;
     private List<Pigeons> pigeonsData;
+    private List<BreedingPigeons> breedPigeonsData;
+    private List<BreedingPigeons> breedPigeonsData2;
     private JTextField textField3;
-    JMenu menu, submenu;
-    JMenuItem i1, i2, i3, i4, i5, i6;
+    JMenuBar menuBar;
+    JMenu menu;
+    JMenu menu2;
+    JMenuItem menuItem;
 
     AddPigeonWindow() {
         gson = new Gson();
         pigeonsData = new ArrayList<>();
+        breedPigeonsData = new ArrayList<>();
+        breedPigeonsData2 = new ArrayList<>();
+        loadJsonFromFileFather();
+        loadJsonFromFileMother();
 
         frame = new JFrame();
         frame.setSize(800, 600);
@@ -79,6 +88,7 @@ public class AddPigeonWindow {
                 if (textField.getText().equals("Pigeon ID"))
                     textField.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField.getText().equals(""))
                     textField.setText("Pigeon ID");
@@ -94,6 +104,7 @@ public class AddPigeonWindow {
                 if (textField2.getText().equals("Calling Card"))
                     textField2.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField2.getText().equals(""))
                     textField2.setText("Calling Card");
@@ -109,6 +120,7 @@ public class AddPigeonWindow {
                 if (textField3.getText().equals("Year"))
                     textField3.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField3.getText().equals(""))
                     textField3.setText("Year");
@@ -124,6 +136,7 @@ public class AddPigeonWindow {
                 if (textField4.getText().equals("Times Scored"))
                     textField4.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField4.getText().equals(""))
                     textField4.setText("Times Scored");
@@ -139,6 +152,7 @@ public class AddPigeonWindow {
                 if (textField5.getText().equals("Times Flyed"))
                     textField5.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField5.getText().equals(""))
                     textField5.setText("Times Flyed");
@@ -154,6 +168,7 @@ public class AddPigeonWindow {
                 if (textField6.getText().equals("Wins"))
                     textField6.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField6.getText().equals(""))
                     textField6.setText("Wins");
@@ -162,34 +177,51 @@ public class AddPigeonWindow {
         panel.add(textField6);
 //----------------
 //Father Input
-        textField7 = new JTextField("Father");
-        textField7.setBounds(380, 150, 100, 20);
-        textField7.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField7.getText().equals("Father"))
-                    textField7.setText("");
-            }
-            public void focusLost(FocusEvent e) {
-                if (textField7.getText().equals(""))
-                    textField7.setText("Father");
-            }
-        });
-        panel.add(textField7);
+        menuBar = new JMenuBar();
+        menuBar.setBounds(380, 150, 100, 20);
+        menu = new JMenu("Father");
+                for (int i = 0; i < breedPigeonsData.size(); i++){
+                    menuItem = new JMenuItem();
+                    menuItem.setText(breedPigeonsData.get(i).getBPigeonName());
+                    System.out.println("the name: " + breedPigeonsData.get(i).getBPigeonName());
+                    menu.add(menuItem);
+                    menuItem.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            for (int i = 0; i < breedPigeonsData.size(); i++){
+                                menu.setText(breedPigeonsData.get(i).getBPigeonName());
+                            }
+
+                        }
+                    });}
+
+        menuBar.add(menu);
+        panel.add(menuBar);
+
+
 //-----------
 //Mother Input
-        textField8 = new JTextField("Mother");
-        textField8.setBounds(500, 150, 100, 20);
-        textField8.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField8.getText().equals("Mother"))
-                    textField8.setText("");
-            }
-            public void focusLost(FocusEvent e) {
-                if (textField8.getText().equals(""))
-                    textField8.setText("Mother");
-            }
-        });
-        panel.add(textField8);
+        menuBar = new JMenuBar();
+        menuBar.setBounds(500, 150, 100, 20);
+        menu2 = new JMenu("Mother");
+        for (int i = 0; i < breedPigeonsData2.size(); i++){
+            menuItem = new JMenuItem();
+            menuItem.setText(breedPigeonsData2.get(i).getBPigeonName());
+            System.out.println("the name: " + breedPigeonsData2.get(i).getBPigeonName());
+            menu2.add(menuItem);
+            menuItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    for (int i = 0; i < breedPigeonsData2.size(); i++){
+                        menu2.setText(breedPigeonsData2.get(i).getBPigeonName());
+                    }
+
+                }
+            });}
+
+        menuBar.add(menu2);
+        panel.add(menuBar);
+
 //---------
 //Colour Input
         textField9 = new JTextField("Colour");
@@ -199,6 +231,7 @@ public class AddPigeonWindow {
                 if (textField9.getText().equals("Colour"))
                     textField9.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField9.getText().equals(""))
                     textField9.setText("Colour");
@@ -214,6 +247,7 @@ public class AddPigeonWindow {
                 if (textField10.getText().equals("Gender"))
                     textField10.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField10.getText().equals(""))
                     textField10.setText("Gender");
@@ -229,6 +263,7 @@ public class AddPigeonWindow {
                 if (textField11.getText().equals("Letters"))
                     textField11.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField11.getText().equals(""))
                     textField11.setText("Letters");
@@ -244,6 +279,7 @@ public class AddPigeonWindow {
                 if (textField12.getText().equals("Date Weaned"))
                     textField12.setText("");
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField12.getText().equals(""))
                     textField12.setText("Date Weaned");
@@ -267,13 +303,13 @@ public class AddPigeonWindow {
                     String year = textField3.getText();
                     int score = Integer.parseInt(textField4.getText());
                     int flyed = Integer.parseInt(textField5.getText());
-                    double scoreOdss =(Double.parseDouble(String.valueOf(score)) / Double.parseDouble(String.valueOf(flyed))) * 100;
+                    double scoreOdss = (Double.parseDouble(String.valueOf(score)) / Double.parseDouble(String.valueOf(flyed))) * 100;
                     System.out.println("score " + score);
                     System.out.println("flyed " + flyed);
                     System.out.println("scorePercentage " + scoreOdss);
                     int wins = Integer.parseInt(textField6.getText());
-                    String father = textField7.getText();
-                    String mother = textField8.getText();
+                    String father = menu.getText();
+                    String mother = menu2.getText();
                     String colour = textField9.getText();
                     String gender = textField10.getText();
                     String letters = textField11.getText();
@@ -305,6 +341,36 @@ public class AddPigeonWindow {
                 }
             }
         });
+    }
+
+    private void loadJsonFromFileFather() {
+        try (FileReader reader = new FileReader("src/Fathers.json")) {
+            Type listType = new TypeToken<ArrayList<BreedingPigeons>>() {
+            }.getType();
+            breedPigeonsData = gson.fromJson(reader, listType);
+
+            if (breedPigeonsData == null) {
+                breedPigeonsData = new ArrayList<>();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            breedPigeonsData = new ArrayList<>();
+        }
+    }
+
+    private void loadJsonFromFileMother() {
+        try (FileReader reader2 = new FileReader("src/Mothers.json")) {
+            Type listType2 = new TypeToken<ArrayList<BreedingPigeons>>() {
+            }.getType();
+            breedPigeonsData2 = gson.fromJson(reader2, listType2);
+
+            if (breedPigeonsData2 == null) {
+                breedPigeonsData2 = new ArrayList<>();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            breedPigeonsData2 = new ArrayList<>();
+        }
     }
 
 //Save New Pigeons To json file

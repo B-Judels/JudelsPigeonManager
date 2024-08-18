@@ -2,6 +2,8 @@ package Screens;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.example.BreedingPigeons;
+import org.example.GCodeCellRenderer;
 import org.example.Pigeons;
 import org.example.YearCellRenderer;
 
@@ -105,8 +107,30 @@ public class MainWindow {
 
         scrollPane = new JScrollPane(table);
         scrollPane.setBounds(20, 50, 200, 300);
-        scrollPane.setSize(700, 500);
+        scrollPane.setSize(500, 500);
         panel.add(scrollPane);
+
+//        tableModel_2 = new DefaultTableModel(new String[]{"G1", "G2", "G3","G4","G5", "G6", "G7","G8"}, 0);
+//        table_2 = new JTable(tableModel_2);
+//        table_2.setBounds(550, 100, 100, 200);
+//
+//        // Load data into the table
+//        for (BreedingPigeons pigeon2 : pigeonsData2) {
+//            tableModel_2.addRow(new Object[]{pigeon2.getBGeneticCode1(),
+//                    pigeon2.getBGeneticCode2(), pigeon2.getBGeneticCode3(), pigeon2.getBGeneticCode4()});
+//        }
+//
+//        table_2.getColumnModel().getColumn(0).setCellRenderer(new GCodeCellRenderer());
+//        table_2.getColumnModel().getColumn(1).setCellRenderer(new GCodeCellRenderer());
+//        table_2.getColumnModel().getColumn(2).setCellRenderer(new GCodeCellRenderer());
+//        table_2.getColumnModel().getColumn(3).setCellRenderer(new GCodeCellRenderer());
+//
+//
+//        scrollPane_2 = new JScrollPane(table_2);
+//        scrollPane_2.setBounds(499, 50, 40, 300);
+//        scrollPane_2.setSize(80, 500);
+//        panel.add(scrollPane_2);
+
     }
 
 
