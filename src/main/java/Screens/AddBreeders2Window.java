@@ -58,7 +58,7 @@ public class AddBreeders2Window {
     private JMenuItem gene10;
     private JMenuItem gene11;
     private JMenuItem gene12;
-    private JMenuItem gene13;
+    private JMenuItem gene13, gene14;
     private JMenu colorMenu;
     private JMenuBar colorMenuBar;
 
@@ -474,8 +474,18 @@ public class AddBreeders2Window {
             }
         });
 
+        gene14 = new JMenuItem("S");
+        gene14.setBackground(Color.LIGHT_GRAY);
+        gene14.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(Color.LIGHT_GRAY);
+                menu.setText("S");
+            }
+        });
+
         menu.add(gene1); menu.add(gene2); menu.add(gene3); menu.add(gene4); menu.add(gene5); menu.add(gene6); menu.add(gene7);
-        menu.add(gene8); menu.add(gene9); menu.add(gene10); menu.add(gene11); menu.add(gene12); menu.add(gene13);
+        menu.add(gene8); menu.add(gene9); menu.add(gene10); menu.add(gene11); menu.add(gene12); menu.add(gene13); menu.add(gene14);
         menuBar.add(menu);
         panel.add(menuBar);
 

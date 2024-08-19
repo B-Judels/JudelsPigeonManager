@@ -63,6 +63,10 @@ public class GCodeCellRenderer extends DefaultTableCellRenderer{
                     cellComponent.setForeground(Color.LIGHT_GRAY);
                     cellComponent.setBackground(Color.LIGHT_GRAY);
                     break;
+                case "S":
+                    cellComponent.setForeground(Color.BLACK);
+                    cellComponent.setBackground(Color.LIGHT_GRAY);
+                    break;
                 default:
                     cellComponent.setForeground(Color.WHITE);
                     cellComponent.setBackground(Color.WHITE);// Default color

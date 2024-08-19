@@ -76,6 +76,20 @@ public class MainWindow {
             }
         });
 
+        button = new JButton("Update Scores");
+        button.setBackground(Color.CYAN);
+        button.setEnabled(true);
+        button.setBounds(120, 35, 120, 15);
+        panel.add(button);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                UpdateScoresWindow update = new UpdateScoresWindow();
+                update.show();
+            }
+        });
+
         button = new JButton("Hatchery");
         button.setBackground(Color.CYAN);
         button.setEnabled(true);
