@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.example.BreedingPigeons;
 import org.example.Pigeons;
+import org.example.YearCellRenderer;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,16 +26,21 @@ public class UpdateScoresWindow {
     private Gson gson;
     private JButton button;
     private JPanel panel;
-    private JTextField textField, textField2;
+    private JTextField textField, textField2, textField3;
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem menuItem;
     private List<Pigeons> PigeonsData;
+    private List<Pigeons> pigeonsData;
+    private JTable table;
+    private JScrollPane scrollPane;
+    private DefaultTableModel tableModel;
 
 
     public UpdateScoresWindow() {
         gson = new Gson();
         PigeonsData = new ArrayList<>();
+        pigeonsData = new ArrayList<>();
         loadJsonFromFile();
 
         frame = new JFrame();
@@ -80,7 +87,7 @@ public class UpdateScoresWindow {
         //Father Input
         menuBar = new JMenuBar();
         menuBar.setBounds(270, 30, 100, 20);
-        menu = new JMenu("Father");
+        menu = new JMenu("ID");
         for (int i = 0; i < PigeonsData.size(); i++){
             JMenuItem menuItem = new JMenuItem();
             menuItem.setText(PigeonsData.get(i).getPigeonID());
@@ -102,22 +109,75 @@ public class UpdateScoresWindow {
         menuBar.add(menu);
         panel.add(menuBar);
 
-        //Score Input
-        textField2 = new JTextField("Race Score");
+        //Placement Input
+        textField2 = new JTextField("Race Placing");
         textField2.setBounds(380, 30, 100, 20);
         textField2.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                if (textField2.getText().equals("Race Score"))
+                if (textField2.getText().equals("Race Placing"))
                     textField2.setText("");
             }
 
             public void focusLost(FocusEvent e) {
                 if (textField2.getText().equals(""))
-                    textField2.setText("Race Score");
+                    textField2.setText("Race Placing");
             }
         });
         panel.add(textField2);
 //----------
+
+        //Score Input
+        textField3 = new JTextField("Race Score");
+        textField3.setBounds(490, 30, 100, 20);
+        textField3.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField3.getText().equals("Race Score"))
+                    textField3.setText("");
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (textField3.getText().equals(""))
+                    textField3.setText("Race Score");
+            }
+        });
+        panel.add(textField3);
+
+        button = new JButton("Add");
+        button.setBackground(Color.CYAN);
+        button.setEnabled(true);
+        button.setBounds(200, 50, 80, 20);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String id = menu.getText();
+                String placing = textField2.getText();
+                if(placing.equals("1")){
+                    placing = "WIN!";
+                }else{
+                    placing = textField2.getText();
+                }
+
+                String score = textField3.getText();
+                tableModel.addRow(new Object[]{id, placing, score});
+
+                menu.setText("ID");
+                textField2.setText("Race Placing");
+                textField3.setText("Race Score");
+
+            }
+        });
+        panel.add(button);
+
+//----------
+
+        tableModel = new DefaultTableModel(new String[]{"ID", "Placement", "Score"}, 0);
+        table = new JTable(tableModel);
+        table.setBounds(30, 100, 500, 200);
+
+        scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(20, 100, 200, 300);
+        scrollPane.setSize(500, 500);
+        panel.add(scrollPane);
 
 
 //-----------
