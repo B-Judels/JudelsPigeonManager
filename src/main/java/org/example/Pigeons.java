@@ -25,13 +25,14 @@ public class Pigeons {
     private String gC6;
     private String gC7;
     private String gC8;
+    private int totalScore;
 
     public Pigeons(String pigeonID, String pigeonCallingCard, String pigeonYear,
                    int pigeonScored, double pigeonScorePercentage, int pigeonWins,
                    String pigeonFather, String pigeonMother, String pigeonLetters,
                    String pigeonColour, String pigeonGender,String pigeonWeaned,
                    int PigeonFlyed, String gC1, String gC2, String gC3, String gC4,
-                   String gC5, String gC6, String gC7, String gC8) {
+                   String gC5, String gC6, String gC7, String gC8, int totalScore) {
 
         this.pigeonID = pigeonID;
         this.PigeonCallingCard = pigeonCallingCard;
@@ -45,6 +46,7 @@ public class Pigeons {
         this.pigeonGender = pigeonGender;
         this.pigeonLetters = pigeonLetters;
         this.pigeonWeaned = pigeonWeaned;
+        this.pigeonFlyed = PigeonFlyed;
         this.gC1 = gC1;
         this.gC2 = gC2;
         this.gC3 = gC3;
@@ -53,6 +55,7 @@ public class Pigeons {
         this.gC6 = gC6;
         this.gC7 = gC7;
         this.gC8 = gC8;
+        this.totalScore = totalScore;
     }
   //ID methods
     public String getPigeonID() {
@@ -161,7 +164,15 @@ public class Pigeons {
     public void setPigeonLetters(String pigeonLetters) {
         this.pigeonLetters = pigeonLetters;
     }
-//---
+
+    public int getPigeonFlyed() {
+        return pigeonFlyed;
+    }
+    public void setPigeonFlyed(int pigeonFlyed) {
+        this.pigeonFlyed = pigeonFlyed;
+    }
+
+    //---
     public String getgC1(){
         return gC1;
     }
@@ -216,6 +227,13 @@ public class Pigeons {
     }
     public void setgC8(String gC8){
         this.gC8 = gC8;
+    }
+
+    public int getTotalScore(){
+        return totalScore;
+    }
+    public void setTotalScore(int totalScore){
+        this.totalScore = totalScore;
     }
 
 }

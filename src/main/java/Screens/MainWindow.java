@@ -116,7 +116,7 @@ public class MainWindow {
         // Load data into the table
         for (Pigeons pigeon : pigeonsData) {
             tableModel.addRow(new Object[]{pigeon.getPigeonID(), pigeon.getPigeonCallingCard(),
-                    pigeon.getPigeonYear(), pigeon.getPigeonScored(), (String.format("%.2f", pigeon.getPigeonScorePercentage())) + "%", pigeon.getPigeonWins()});
+                    pigeon.getPigeonYear(), pigeon.getTotalScore(), (String.format("%.2f", pigeon.getPigeonScorePercentage())) + "%", pigeon.getPigeonWins()});
         }
 
         // Set custom renderer for the "Year" column (index 2)

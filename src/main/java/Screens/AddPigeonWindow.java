@@ -825,7 +825,7 @@ public class AddPigeonWindow {
                     //---------
                     // Add to the pigeons data list
                     Pigeons pigeon = new Pigeons(id, callingCard, year, score, scoreOdss, wins, father, mother, colour, gender, letters, weaned, flyed,
-                            gC1, gC2, gC3, gC4, gC5, gC6, gC7, gC8);
+                            gC1, gC2, gC3, gC4, gC5, gC6, gC7, gC8,0);
                     pigeonsData.add(pigeon);
                     //----------
                     // Save updated data to JSON file

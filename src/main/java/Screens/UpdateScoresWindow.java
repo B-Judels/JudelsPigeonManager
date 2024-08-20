@@ -13,14 +13,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateScoresWindow {
 
+    private String currentFather;
     private JFrame frame;
     private JLabel label;
     private Gson gson;
@@ -32,15 +32,21 @@ public class UpdateScoresWindow {
     private JMenuItem menuItem;
     private List<Pigeons> PigeonsData;
     private List<Pigeons> pigeonsData;
+    private List<Pigeons> updateData;
+    private List<Integer> indexFinder;
     private JTable table;
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
+    private int addScore;
+    private int newScore;
 
 
     public UpdateScoresWindow() {
         gson = new Gson();
         PigeonsData = new ArrayList<>();
-        pigeonsData = new ArrayList<>();
+//        pigeonsData = new ArrayList<>();
+        updateData = new ArrayList<>();
+        indexFinder = new ArrayList<>();
         loadJsonFromFile();
 
         frame = new JFrame();
@@ -101,8 +107,37 @@ public class UpdateScoresWindow {
                 public void actionPerformed(ActionEvent e) {
                     // Use selectedIndex instead of j
                     menu.setText(PigeonsData.get(selectedIndex).getPigeonID());
+                    //current data
+                    int currentIndex = selectedIndex;
+                    String currentId = PigeonsData.get(selectedIndex).getPigeonID();
+                    String currentCallingCard = PigeonsData.get(selectedIndex).getPigeonCallingCard();
+                    String currentYear = PigeonsData.get(selectedIndex).getPigeonYear();
+                    int currentScore = PigeonsData.get(selectedIndex).getPigeonScored();
+                    double currentPercentage = PigeonsData.get(selectedIndex).getPigeonScorePercentage();
+                    int currentWins = PigeonsData.get(selectedIndex).getPigeonWins();
+                    String currentFather = PigeonsData.get(selectedIndex).getPigeonFather();
+                    String currentMother = PigeonsData.get(selectedIndex).getPigeonMother();
+                    String currentLetters = PigeonsData.get(selectedIndex).getPigeonLetters();
+                    String currentColour = PigeonsData.get(selectedIndex).getPigeonColour();
+                    String currentGender = PigeonsData.get(selectedIndex).getPigeonGender();
+                    String currentWeaned = PigeonsData.get(selectedIndex).getPigeonWeaned();
+                    int currentFlyed = PigeonsData.get(selectedIndex).getPigeonFlyed();
+                    String currentG1 = PigeonsData.get(selectedIndex).getgC1();
+                    String currentG2 = PigeonsData.get(selectedIndex).getgC2();
+                    String currentG3 = PigeonsData.get(selectedIndex).getgC3();
+                    String currentG4 = PigeonsData.get(selectedIndex).getgC4();
+                    String currentG5 = PigeonsData.get(selectedIndex).getgC5();
+                    String currentG6 = PigeonsData.get(selectedIndex).getgC6();
+                    String currentG7 = PigeonsData.get(selectedIndex).getgC7();
+                    String currentG8 = PigeonsData.get(selectedIndex).getgC8();
 
-                    System.out.println(selectedIndex);
+                    Pigeons current = new Pigeons(currentId, currentCallingCard, currentYear, currentScore, currentPercentage,currentWins,
+                            currentFather, currentMother, currentLetters, currentColour, currentGender, currentWeaned, currentFlyed,
+                            currentG1,currentG2,currentG3,currentG4,currentG5,currentG6,currentG7,currentG8,0);
+                    updateData.add(current);
+
+                    indexFinder.add(currentIndex);
+
                 }
             });
         }
@@ -124,7 +159,7 @@ public class UpdateScoresWindow {
             }
         });
         panel.add(textField2);
-//----------
+//---------
 
         //Score Input
         textField3 = new JTextField("Race Score");
@@ -151,6 +186,7 @@ public class UpdateScoresWindow {
             public void actionPerformed(ActionEvent e) {
                 String id = menu.getText();
                 String placing = textField2.getText();
+
                 if(placing.equals("1")){
                     placing = "WIN!";
                 }else{
@@ -158,7 +194,28 @@ public class UpdateScoresWindow {
                 }
 
                 String score = textField3.getText();
-                tableModel.addRow(new Object[]{id, placing, score});
+                addScore = Integer.parseInt(score);
+                tableModel.addRow(new Object[]{id, placing, addScore});
+
+                int tempIndex = indexFinder.get(0);
+                int theCurrentScore = updateData.get(tempIndex).getTotalScore();
+
+                updateData.get(tempIndex).setTotalScore(theCurrentScore + addScore);
+
+                int theCurrentWins = updateData.get(tempIndex).getPigeonWins();
+                if (textField2.getText().equals("1")) {
+                    updateData.get(tempIndex).setPigeonWins(theCurrentWins + 1);
+                }else {
+                    updateData.get(tempIndex).setPigeonWins(theCurrentWins);
+                }
+
+                PigeonsData.set(tempIndex, updateData.get(tempIndex));
+
+                saveJsonToFile();
+
+              System.out.println(updateData.get(tempIndex).getPigeonScored());
+                System.out.println(updateData.get(tempIndex).getPigeonWins());
+
 
                 menu.setText("ID");
                 textField2.setText("Race Placing");
@@ -182,6 +239,16 @@ public class UpdateScoresWindow {
 
 //-----------
     }
+
+    //Save New Pigeons To json file
+    private void saveJsonToFile() {
+        try (FileWriter writer = new FileWriter("src/pigeons.json")) {
+            gson.toJson(PigeonsData, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+//-----------
 
     private void loadJsonFromFile() {
         try (FileReader reader = new FileReader("src/pigeons.json")) {
