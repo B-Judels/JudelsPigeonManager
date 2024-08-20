@@ -130,10 +130,12 @@ public class UpdateScoresWindow {
                     String currentG6 = PigeonsData.get(selectedIndex).getgC6();
                     String currentG7 = PigeonsData.get(selectedIndex).getgC7();
                     String currentG8 = PigeonsData.get(selectedIndex).getgC8();
+                    int currentTotalScore = PigeonsData.get(selectedIndex).getTotalScore();
+
 
                     Pigeons current = new Pigeons(currentId, currentCallingCard, currentYear, currentScore, currentPercentage,currentWins,
                             currentFather, currentMother, currentLetters, currentColour, currentGender, currentWeaned, currentFlyed,
-                            currentG1,currentG2,currentG3,currentG4,currentG5,currentG6,currentG7,currentG8,0);
+                            currentG1,currentG2,currentG3,currentG4,currentG5,currentG6,currentG7,currentG8,currentTotalScore);
                     updateData.add(current);
 
                     indexFinder.add(currentIndex);
@@ -197,29 +199,62 @@ public class UpdateScoresWindow {
                 addScore = Integer.parseInt(score);
                 tableModel.addRow(new Object[]{id, placing, addScore});
 
+                //update total score
                 int tempIndex = indexFinder.get(0);
                 int theCurrentScore = updateData.get(tempIndex).getTotalScore();
+                System.out.println("old times scored: " + theCurrentScore);
 
-                updateData.get(tempIndex).setTotalScore(theCurrentScore + addScore);
+                int newestTotalScore = theCurrentScore + Integer.parseInt(textField3.getText());
+                updateData.get(tempIndex).setTotalScore(newestTotalScore);
 
+                System.out.println("new times scored: " + newestTotalScore);
+                //---
+                //update wins
                 int theCurrentWins = updateData.get(tempIndex).getPigeonWins();
                 if (textField2.getText().equals("1")) {
                     updateData.get(tempIndex).setPigeonWins(theCurrentWins + 1);
                 }else {
                     updateData.get(tempIndex).setPigeonWins(theCurrentWins);
                 }
+                //----
+                //update times scored
+                int theCurrentTimesScore = updateData.get(tempIndex).getPigeonScored();
+                System.out.println("old score: " + theCurrentTimesScore);
 
+                int extraScore = Integer.parseInt(textField3.getText());
+                if (extraScore > 0) {
+                    updateData.get(tempIndex).setPigeonScored(theCurrentTimesScore + 1);
+                }else {
+                    updateData.get(tempIndex).setPigeonScored(theCurrentTimesScore);
+                }
+                System.out.println("new score: " + updateData.get(tempIndex).getPigeonScored());
+                //---
+                //update times flyed
+                int currentFlys = updateData.get(tempIndex).getPigeonFlyed();
+                int newFlys = currentFlys + 1;
+                updateData.get(tempIndex).setPigeonFlyed(newFlys);
+                //----
+                //update score odds
+                System.out.println(newFlys);
+
+                double currentOdds = updateData.get(tempIndex).getPigeonScorePercentage();
+                int newTimesPigeonScored = updateData.get(tempIndex).getPigeonScored();
+                double newPercentage = (Double.parseDouble(String.valueOf(newTimesPigeonScored)) / Double.parseDouble(String.valueOf(newFlys))) * 100;
+                updateData.get(tempIndex).setPigeonScorePercentage(newPercentage);
+
+                System.out.println(newTimesPigeonScored);
+                System.out.println(newPercentage);
+                //----
+                //UPDATE
                 PigeonsData.set(tempIndex, updateData.get(tempIndex));
-
                 saveJsonToFile();
-
-              System.out.println(updateData.get(tempIndex).getPigeonScored());
-                System.out.println(updateData.get(tempIndex).getPigeonWins());
-
-
+                //----
+                //setting gui text and some values back to default
                 menu.setText("ID");
                 textField2.setText("Race Placing");
                 textField3.setText("Race Score");
+                indexFinder.clear();
+                //---
 
             }
         });
