@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.example.BreedingPigeons;
 import org.example.Pigeons;
+import org.example.RaceData;
 import org.example.YearCellRenderer;
 
 import javax.swing.*;
@@ -22,18 +23,21 @@ public class UpdateScoresWindow {
 
     private String currentFather;
     private JFrame frame;
+    private JFrame frame1;
     private JLabel label;
     private Gson gson;
     private JButton button;
     private JPanel panel;
-    private JTextField textField, textField2, textField3;
+    private JPanel panel1;
+    private JTextField textField0, textField, textField2, textField3;
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem menuItem;
     private List<Pigeons> PigeonsData;
-    private List<Pigeons> pigeonsData;
+    private List<RaceData> raceData;
     private List<Pigeons> updateData;
     private List<Integer> indexFinder;
+    private List<String> raceName;
     private JTable table;
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
@@ -44,9 +48,10 @@ public class UpdateScoresWindow {
     public UpdateScoresWindow() {
         gson = new Gson();
         PigeonsData = new ArrayList<>();
-//        pigeonsData = new ArrayList<>();
+        raceName = new ArrayList<>();
         updateData = new ArrayList<>();
         indexFinder = new ArrayList<>();
+        raceData = new ArrayList<>();
         loadJsonFromFile();
 
         frame = new JFrame();
@@ -54,6 +59,46 @@ public class UpdateScoresWindow {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Judels Pigeon Manager|Update Scores");
+        frame.setVisible(false);
+
+        frame1 = new JFrame();
+        frame1.setVisible(true);
+        frame1.setSize(800, 600);
+        frame1.setLocationRelativeTo(null);
+        frame1.setTitle("Judels Pigeon Manager|Add Race");
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel1 = new JPanel();
+        panel1.setLayout(null);
+        frame1.add(panel1);
+
+        textField0 = new JTextField("Race Name/Location Name");
+        textField0.setBounds(100, 30, 160, 20);
+        textField0.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if (textField0.getText().equals("Race Name/Location Name"))
+                    textField0.setText("");
+            }
+
+            public void focusLost(FocusEvent e) {
+                if (textField0.getText().equals(""))
+                    textField0.setText("Race Name/Location Name");
+            }
+        });
+        panel1.add(textField0);
+
+        button = new JButton("Add Race");
+        button.setBounds(270, 30, 100, 20);
+        button.setBackground(Color.CYAN);
+        panel1.add(button);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame1.setVisible(false);
+                frame.setVisible(true);
+                String theRaceName = textField0.getText();
+                raceName.add(theRaceName);
+            }
+        });
 
 
         panel = new JPanel();
@@ -73,22 +118,6 @@ public class UpdateScoresWindow {
                 main.show();
             }
         });
-
-
-        textField = new JTextField("Race Name/Location Name");
-        textField.setBounds(100, 30, 160, 20);
-        textField.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (textField.getText().equals("Race Name/Location Name"))
-                    textField.setText("");
-            }
-
-            public void focusLost(FocusEvent e) {
-                if (textField.getText().equals(""))
-                    textField.setText("Race Name/Location Name");
-            }
-        });
-        panel.add(textField);
 
         //Father Input
         menuBar = new JMenuBar();
@@ -196,18 +225,15 @@ public class UpdateScoresWindow {
                 }
 
                 String score = textField3.getText();
-                addScore = Integer.parseInt(score);
+                int addScore = Integer.parseInt(score);
                 tableModel.addRow(new Object[]{id, placing, addScore});
 
                 //update total score
                 int tempIndex = indexFinder.get(0);
                 int theCurrentScore = updateData.get(tempIndex).getTotalScore();
-                System.out.println("old times scored: " + theCurrentScore);
 
                 int newestTotalScore = theCurrentScore + Integer.parseInt(textField3.getText());
                 updateData.get(tempIndex).setTotalScore(newestTotalScore);
-
-                System.out.println("new times scored: " + newestTotalScore);
                 //---
                 //update wins
                 int theCurrentWins = updateData.get(tempIndex).getPigeonWins();
@@ -219,7 +245,6 @@ public class UpdateScoresWindow {
                 //----
                 //update times scored
                 int theCurrentTimesScore = updateData.get(tempIndex).getPigeonScored();
-                System.out.println("old score: " + theCurrentTimesScore);
 
                 int extraScore = Integer.parseInt(textField3.getText());
                 if (extraScore > 0) {
@@ -227,7 +252,6 @@ public class UpdateScoresWindow {
                 }else {
                     updateData.get(tempIndex).setPigeonScored(theCurrentTimesScore);
                 }
-                System.out.println("new score: " + updateData.get(tempIndex).getPigeonScored());
                 //---
                 //update times flyed
                 int currentFlys = updateData.get(tempIndex).getPigeonFlyed();
@@ -235,16 +259,28 @@ public class UpdateScoresWindow {
                 updateData.get(tempIndex).setPigeonFlyed(newFlys);
                 //----
                 //update score odds
-                System.out.println(newFlys);
-
                 double currentOdds = updateData.get(tempIndex).getPigeonScorePercentage();
                 int newTimesPigeonScored = updateData.get(tempIndex).getPigeonScored();
                 double newPercentage = (Double.parseDouble(String.valueOf(newTimesPigeonScored)) / Double.parseDouble(String.valueOf(newFlys))) * 100;
                 updateData.get(tempIndex).setPigeonScorePercentage(newPercentage);
-
-                System.out.println(newTimesPigeonScored);
-                System.out.println(newPercentage);
                 //----
+                //add to RaceData
+                int thePlacing = Integer.parseInt(placing);
+                raceData.add(new RaceData(updateData.get(tempIndex).getPigeonID(), updateData.get(tempIndex).getPigeonCallingCard(), updateData.get(tempIndex).getPigeonYear(),
+                        thePlacing, addScore));
+                saveJsonToFileRaceData();
+                for (int i = 0; i < raceData.size(); i++) {
+                        System.out.println(raceData.get(i).getPigeonID());
+                        System.out.println(raceData.get(i).getPigeonCC());
+                        System.out.println(raceData.get(i).getYear());
+                        System.out.println(raceData.get(i).getPlacement());
+                        System.out.println(raceData.get(i).getScore());
+                }
+                //----
+                //add to races
+                raceName.add(textField0.getText());
+                saveJsonToFileRaces();
+                //---
                 //UPDATE
                 PigeonsData.set(tempIndex, updateData.get(tempIndex));
                 saveJsonToFile();
@@ -300,7 +336,61 @@ public class UpdateScoresWindow {
         }
     }
 
+    private void saveJsonToFileRaceData() {
+        try {
+            // Read existing data
+            List<RaceData> existingData = new ArrayList<>();
+            Type pigeonListType = new TypeToken<List<RaceData>>() {}.getType();
+            try (Reader reader = new FileReader("src/RaceData.json")) {
+                existingData = gson.fromJson(reader, pigeonListType);
+                if (existingData == null) {
+                    existingData = new ArrayList<>();
+                }
+            } catch (FileNotFoundException e) {
+                // File not found, initialize with empty list
+            }
+
+            // Add new data
+            existingData.addAll(raceData);
+
+            // Write updated data
+            try (FileWriter writer = new FileWriter("src/RaceData.json")) {
+                gson.toJson(existingData, writer);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+//-----------
+
+    private void saveJsonToFileRaces() {
+        try {
+            // Read existing data
+            List<String> existingData = new ArrayList<>();
+            Type pigeonListType = new TypeToken<List<String>>() {}.getType();
+            try (Reader reader = new FileReader("src/Races.json")) {
+                existingData = gson.fromJson(reader, pigeonListType);
+                if (existingData == null) {
+                    existingData = new ArrayList<>();
+                }
+            } catch (FileNotFoundException e) {
+                // File not found, initialize with empty list
+            }
+
+            // Add new data
+            existingData.addAll(raceName);
+
+            // Write updated data
+            try (FileWriter writer = new FileWriter("src/Races.json")) {
+                gson.toJson(existingData, writer);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+//-----------
+
     public void show() {
-        frame.setVisible(true);
+        frame1.setVisible(true);
     }
 }
