@@ -30,14 +30,15 @@ public class UpdateScoresWindow {
     private JPanel panel;
     private JPanel panel1;
     private JTextField textField0, textField, textField2, textField3;
-    private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem menuItem;
+    private JMenuBar menuBar, menuBar0;
+    private JMenu menu, menu0;
+    private JMenuItem menuItem, menuItem0;
     private List<Pigeons> PigeonsData;
     private List<RaceData> raceData;
     private List<Pigeons> updateData;
     private List<Integer> indexFinder;
     private List<String> raceName;
+    private List<String> seasonName;
     private JTable table;
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
@@ -52,7 +53,9 @@ public class UpdateScoresWindow {
         updateData = new ArrayList<>();
         indexFinder = new ArrayList<>();
         raceData = new ArrayList<>();
+        seasonName = new ArrayList<>();
         loadJsonFromFile();
+        loadJsonFromFileSeasonNames();
 
         frame = new JFrame();
         frame.setSize(800, 600);
@@ -72,7 +75,7 @@ public class UpdateScoresWindow {
         frame1.add(panel1);
 
         textField0 = new JTextField("Race Name/Location Name");
-        textField0.setBounds(100, 30, 160, 20);
+        textField0.setBounds(110, 30, 160, 20);
         textField0.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
                 if (textField0.getText().equals("Race Name/Location Name"))
@@ -86,8 +89,43 @@ public class UpdateScoresWindow {
         });
         panel1.add(textField0);
 
+        menuBar0 = new JMenuBar();
+        menu0 = new JMenu("Choose Season");
+        menuBar0.add(menu0);
+        menuItem0 = new JMenuItem("Add Season");
+        menuItem0.setBackground(Color.CYAN);
+
+        for (int i = 0; i < seasonName.size(); i++){
+            JMenuItem menuItem00 = new JMenuItem();
+            menuItem00.setText(seasonName.get(i));
+            menu0.add(menuItem00);
+
+            // Capture the value of i at this point in a final variable
+            final int selectedIndex = i;
+
+            menuItem00.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Use selectedIndex instead of j
+                    menu0.setText(seasonName.get(selectedIndex));
+                }
+            }); }
+
+        menu0.add(menuItem0);
+        menuBar0.setBounds(0,30,100,20);
+        panel1.add(menuBar0);
+        menuItem0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame1.setVisible(false);
+                AddSeasonWindow addSeasonWindow = new AddSeasonWindow();
+                addSeasonWindow.show();
+            }
+        });
+
+
         button = new JButton("Add Race");
-        button.setBounds(270, 30, 100, 20);
+        button.setBounds(280, 30, 100, 20);
         button.setBackground(Color.CYAN);
         panel1.add(button);
         button.addActionListener(new ActionListener() {
@@ -110,12 +148,27 @@ public class UpdateScoresWindow {
         button.setEnabled(true);
         button.setBounds(0, 0, 80, 20);
         panel.add(button);
+        panel1.add(button);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
+                frame1.setVisible(false);
                 MainWindow main = new MainWindow();
                 main.show();
+            }
+        });
+
+        button = new JButton("Back");
+        button.setBackground(Color.CYAN);
+        button.setEnabled(true);
+        button.setBounds(0, 0, 80, 20);
+        panel.add(button);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                frame1.setVisible(true);
             }
         });
 
@@ -333,6 +386,21 @@ public class UpdateScoresWindow {
         } catch (IOException e) {
             e.printStackTrace();
             PigeonsData = new ArrayList<>();
+        }
+    }
+
+    private void loadJsonFromFileSeasonNames() {
+        try (FileReader reader = new FileReader("src/Seasons.json")) {
+            Type listType = new TypeToken<ArrayList<String>>() {
+            }.getType();
+            seasonName = gson.fromJson(reader, listType);
+
+            if (seasonName == null) {
+                seasonName = new ArrayList<>();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            seasonName = new ArrayList<>();
         }
     }
 
