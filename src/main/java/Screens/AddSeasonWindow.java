@@ -78,10 +78,22 @@ public class AddSeasonWindow {
                 currentSeasonName.add(textField.getText());
                 saveJsonToFileSeasons();
 
+
                 try {
-                    File myObj = new File("src/"+currentSeasonName.get(0)+".json");
-                    if (myObj.createNewFile()) {
-                        System.out.println("File created: " + myObj.getName());
+                    File myObj2 = new File("src/"+currentSeasonName.get(0)+"RaceData.json");
+                    if (myObj2.createNewFile()) {
+                        System.out.println("File created: " + myObj2.getName());
+                    } else {
+                        System.out.println("File already exists djou moegoe.");
+                    }
+                } catch (IOException ee) {
+                    System.out.println("An error occurred. EISHHH!");
+                }
+
+                try {
+                    File myObj3 = new File("src/"+currentSeasonName.get(0)+"Races.json");
+                    if (myObj3.createNewFile()) {
+                        System.out.println("File created: " + myObj3.getName());
                     } else {
                         System.out.println("File already exists djou moegoe.");
                     }

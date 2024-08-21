@@ -39,6 +39,7 @@ public class UpdateScoresWindow {
     private List<Integer> indexFinder;
     private List<String> raceName;
     private List<String> seasonName;
+    private List<String> currentWorkingSeasonName;
     private JTable table;
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
@@ -54,6 +55,7 @@ public class UpdateScoresWindow {
         indexFinder = new ArrayList<>();
         raceData = new ArrayList<>();
         seasonName = new ArrayList<>();
+        currentWorkingSeasonName = new ArrayList<>();
         loadJsonFromFile();
         loadJsonFromFileSeasonNames();
 
@@ -108,6 +110,7 @@ public class UpdateScoresWindow {
                 public void actionPerformed(ActionEvent e) {
                     // Use selectedIndex instead of j
                     menu0.setText(seasonName.get(selectedIndex));
+                    currentWorkingSeasonName.add(seasonName.get(selectedIndex));
                 }
             }); }
 
@@ -134,7 +137,6 @@ public class UpdateScoresWindow {
                 frame1.setVisible(false);
                 frame.setVisible(true);
                 String theRaceName = textField0.getText();
-                raceName.add(theRaceName);
             }
         });
 
@@ -322,16 +324,10 @@ public class UpdateScoresWindow {
                 raceData.add(new RaceData(updateData.get(tempIndex).getPigeonID(), updateData.get(tempIndex).getPigeonCallingCard(), updateData.get(tempIndex).getPigeonYear(),
                         thePlacing, addScore));
                 saveJsonToFileRaceData();
-                for (int i = 0; i < raceData.size(); i++) {
-                        System.out.println(raceData.get(i).getPigeonID());
-                        System.out.println(raceData.get(i).getPigeonCC());
-                        System.out.println(raceData.get(i).getYear());
-                        System.out.println(raceData.get(i).getPlacement());
-                        System.out.println(raceData.get(i).getScore());
-                }
                 //----
                 //add to races
                 raceName.add(textField0.getText());
+                System.out.println(textField0.getText());
                 saveJsonToFileRaces();
                 //---
                 //UPDATE
@@ -343,6 +339,7 @@ public class UpdateScoresWindow {
                 textField2.setText("Race Placing");
                 textField3.setText("Race Score");
                 indexFinder.clear();
+                currentWorkingSeasonName.clear();
                 //---
 
             }
@@ -409,7 +406,7 @@ public class UpdateScoresWindow {
             // Read existing data
             List<RaceData> existingData = new ArrayList<>();
             Type pigeonListType = new TypeToken<List<RaceData>>() {}.getType();
-            try (Reader reader = new FileReader("src/RaceData.json")) {
+            try (Reader reader = new FileReader("src/" + currentWorkingSeasonName.get(0) +"RaceData.json")) {
                 existingData = gson.fromJson(reader, pigeonListType);
                 if (existingData == null) {
                     existingData = new ArrayList<>();
@@ -422,9 +419,13 @@ public class UpdateScoresWindow {
             existingData.addAll(raceData);
 
             // Write updated data
-            try (FileWriter writer = new FileWriter("src/RaceData.json")) {
+            try (FileWriter writer = new FileWriter("src/" + currentWorkingSeasonName.get(0) +"RaceData.json")) {
                 gson.toJson(existingData, writer);
             }
+
+            // Clear the raceData list to avoid duplication
+            raceData.clear();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -436,7 +437,7 @@ public class UpdateScoresWindow {
             // Read existing data
             List<String> existingData = new ArrayList<>();
             Type pigeonListType = new TypeToken<List<String>>() {}.getType();
-            try (Reader reader = new FileReader("src/Races.json")) {
+            try (Reader reader = new FileReader("src/"+currentWorkingSeasonName.get(0)+"Races.json")) {
                 existingData = gson.fromJson(reader, pigeonListType);
                 if (existingData == null) {
                     existingData = new ArrayList<>();
@@ -449,7 +450,7 @@ public class UpdateScoresWindow {
             existingData.addAll(raceName);
 
             // Write updated data
-            try (FileWriter writer = new FileWriter("src/Races.json")) {
+            try (FileWriter writer = new FileWriter("src/"+currentWorkingSeasonName.get(0)+"Races.json")) {
                 gson.toJson(existingData, writer);
             }
         } catch (IOException e) {
