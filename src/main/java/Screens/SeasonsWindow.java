@@ -37,6 +37,9 @@ public class SeasonsWindow {
     private JTable table;
     private JScrollPane scrollPane;
     private DefaultTableModel tableModel;
+    private JTable table0;
+    private JScrollPane scrollPane0;
+    private DefaultTableModel tableModel0;
 //    public static List<String> currentWorkingSeasonName;
 
     public SeasonsWindow() {
@@ -124,7 +127,34 @@ public class SeasonsWindow {
         panel1.setLayout(null);
         frame1.add(panel1);
 
+        button = new JButton("Back");
+        button.setBackground(Color.CYAN);
+        button.setEnabled(true);
+        button.setBounds(0, 0, 80, 20);
+        panel1.add(button);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame1.setVisible(false);
+                MainWindow main = new MainWindow();
+                main.show();
+            }
+        });
+
         //----------
+
+        tableModel0 = new DefaultTableModel(new String[]{"ID"}, 0);
+        table0 = new JTable(tableModel0);
+
+        for (RaceData raceData2 : raceData) {
+            tableModel0.addRow(new Object[]{raceData2.getPigeonID()});
+
+        }
+
+        scrollPane0 = new JScrollPane(table0);
+        scrollPane0.setBounds(40, 100, 60, 500);
+        panel1.add(scrollPane0);
+
         // Convert ArrayList to Vector
         Vector<String> racesVector = new Vector<>(races);
         tableModel = new DefaultTableModel(racesVector, 0);
@@ -132,12 +162,12 @@ public class SeasonsWindow {
         table.setBounds(30, 100, 500, 200);
 
         for (RaceData raceData1 : raceData) {
-            tableModel.addRow(new Object[]{raceData1.getPigeonID(),raceData1.getPlacement()});
+            tableModel.addRow(new Object[]{raceData1.getPlacement()});
 
         }
 
         scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(20, 100, 200, 300);
+        scrollPane.setBounds(99, 100, 200, 300);
         scrollPane.setSize(500, 500);
         panel1.add(scrollPane);
 //-----------
