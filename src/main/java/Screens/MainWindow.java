@@ -2,10 +2,7 @@ package Screens;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.example.BreedingPigeons;
-import org.example.GCodeCellRenderer;
-import org.example.Pigeons;
-import org.example.YearCellRenderer;
+import org.example.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -35,13 +32,27 @@ public class MainWindow {
     private JLabel label;
     private Gson gson;
     private List<Pigeons> pigeonsData;
+    private List<String> seasonName;
     private JTextField textField3;
     JMenu menu, submenu;
-    JMenuItem i1, i2, i3, i4, i5, i6;
+    JMenu menu0;
+    JMenuItem i1, i2, i3, i4, i5, i6, menuItem;
+    public static List<String> currentWorkingSeasonName1;
+    private List<String> races;
+    private List<RaceData> raceData;
+    private JMenuBar menuBar;
 
     public MainWindow() {
         gson = new Gson();
         pigeonsData = new ArrayList<>();
+        seasonName = new ArrayList<>();
+        races = new ArrayList<>();
+        raceData = new ArrayList<>();
+        currentWorkingSeasonName1 = new ArrayList<>();
+        loadJsonFromFileSeasonNames();
+//        loadJsonFromFileSeasonRaceData();
+//        loadJsonFromFileSeasonRaces();
+
 
         // Load data from JSON file
         loadJsonFromFile();
@@ -104,9 +115,60 @@ public class MainWindow {
             }
         });
 
+//        button = new JButton("Seasons");
+//        button.setBackground(Color.CYAN);
+//        button.setEnabled(true);
+//        button.setBounds(210, 0, 100, 20);
+//        panel.add(button);
+//        button.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                frame.setVisible(false);
+//                SeasonsWindow seasonsWindow = new SeasonsWindow();
+//                seasonsWindow.show();
+//            }
+//        });
 
+        menuBar = new JMenuBar();
+        menu = new JMenu("Seasons");
+        menuBar.add(menu);
+        menuItem = new JMenuItem("Add Season");
+        menuItem.setBackground(Color.CYAN);
 
+        for (int i = 0; i < seasonName.size(); i++){
+            JMenuItem menuItem00 = new JMenuItem();
+            menuItem00.setText(seasonName.get(i));
+            menu.add(menuItem00);
 
+            // Capture the value of i at this point in a final variable
+            final int selectedIndex = i;
+
+            menuItem00.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Use selectedIndex instead of j
+                    currentWorkingSeasonName1.clear();
+                    menu.setText(seasonName.get(selectedIndex));
+                    currentWorkingSeasonName1.add(seasonName.get(selectedIndex));
+                    System.out.println(currentWorkingSeasonName1.get(0));
+                    frame.setVisible(false);
+                    SeasonsWindow seasonsWindow = new SeasonsWindow();
+                    seasonsWindow.show();
+
+                }
+            }); }
+
+        menu.add(menuItem);
+        menuBar.setBounds(210, 0, 100, 20);
+        panel.add(menuBar);
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                AddSeasonWindow addSeasonWindow = new AddSeasonWindow();
+                addSeasonWindow.show();
+            }
+        });
 
 
         tableModel = new DefaultTableModel(new String[]{"ID", "Calling Card", "Year", "Score", "Score Odds", "Wins"}, 0);
@@ -155,6 +217,52 @@ public class MainWindow {
 
     }
 
+    private void loadJsonFromFileSeasonNames() {
+        try (FileReader reader = new FileReader("src/Seasons.json")) {
+            Type listType = new TypeToken<ArrayList<String>>() {
+            }.getType();
+            seasonName = gson.fromJson(reader, listType);
+
+            if (seasonName == null) {
+                seasonName = new ArrayList<>();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            seasonName = new ArrayList<>();
+        }
+    }
+//
+//    private void loadJsonFromFileSeasonRaceData() {
+//        try (FileReader reader = new FileReader("src/"+currentWorkingSeasonName.get(0)+"RaceData.json")) {
+//            Type listType = new TypeToken<ArrayList<String>>() {
+//            }.getType();
+//            raceData = gson.fromJson(reader, listType);
+//
+//            if (raceData == null) {
+//                raceData = new ArrayList<>();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            raceData = new ArrayList<>();
+//        }
+//    }
+//
+//    private void loadJsonFromFileSeasonRaces() {
+//        try (FileReader reader = new FileReader("src/"+currentWorkingSeasonName.get(0)+"Races.json")) {
+//            Type listType = new TypeToken<ArrayList<String>>() {
+//            }.getType();
+//            races = gson.fromJson(reader, listType);
+//
+//            if (races == null) {
+//                races = new ArrayList<>();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            races = new ArrayList<>();
+//        }
+//    }
+
+
 
     private void loadJsonFromFile() {
         try (FileReader reader = new FileReader("src/pigeons.json")) {
@@ -171,7 +279,7 @@ public class MainWindow {
         }
     }
 
-    public void show() {
+    public void show(){
         frame.setVisible(true);
     }
 }

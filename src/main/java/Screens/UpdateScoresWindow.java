@@ -347,7 +347,6 @@ public class UpdateScoresWindow {
         panel.add(button);
 
 //----------
-
         tableModel = new DefaultTableModel(new String[]{"ID", "Placement", "Score"}, 0);
         table = new JTable(tableModel);
         table.setBounds(30, 100, 500, 200);
@@ -356,8 +355,6 @@ public class UpdateScoresWindow {
         scrollPane.setBounds(20, 100, 200, 300);
         scrollPane.setSize(500, 500);
         panel.add(scrollPane);
-
-
 //-----------
     }
 
