@@ -231,38 +231,6 @@ public class MainWindow {
             seasonName = new ArrayList<>();
         }
     }
-//
-//    private void loadJsonFromFileSeasonRaceData() {
-//        try (FileReader reader = new FileReader("src/"+currentWorkingSeasonName.get(0)+"RaceData.json")) {
-//            Type listType = new TypeToken<ArrayList<String>>() {
-//            }.getType();
-//            raceData = gson.fromJson(reader, listType);
-//
-//            if (raceData == null) {
-//                raceData = new ArrayList<>();
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            raceData = new ArrayList<>();
-//        }
-//    }
-//
-//    private void loadJsonFromFileSeasonRaces() {
-//        try (FileReader reader = new FileReader("src/"+currentWorkingSeasonName.get(0)+"Races.json")) {
-//            Type listType = new TypeToken<ArrayList<String>>() {
-//            }.getType();
-//            races = gson.fromJson(reader, listType);
-//
-//            if (races == null) {
-//                races = new ArrayList<>();
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            races = new ArrayList<>();
-//        }
-//    }
-
-
 
     private void loadJsonFromFile() {
         try (FileReader reader = new FileReader("src/pigeons.json")) {
